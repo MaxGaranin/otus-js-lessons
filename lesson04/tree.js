@@ -1,7 +1,14 @@
 const fs = require('fs');
 const path = require('path')
 
-const inputDir = './node_modules';
+// const inputDir = './node_modules';
+
+// Запускать так: npm run tree -- "./node_modules"
+const inputDir = process.argv[2];
+if (!fs.lstatSync(inputDir).isDirectory()) {
+  console.error("Argument must be a folder path!");
+  return;
+}
 
 readFiles(inputDir, printResult);
 
