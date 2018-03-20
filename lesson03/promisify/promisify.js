@@ -31,7 +31,7 @@ accessFunc('passwd', fs.constants.W_OK)
     });
 
 function promisify(func) {
-    return (/* не знаю, как вытащить отсюда arguments*/) => {
+    return function(...args) {
         return new Promise((resolve, reject) => {
             var callback = (err, result) => {
                 if (err) {
@@ -40,14 +40,9 @@ function promisify(func) {
                 }
                 resolve(result);
             };
-
-            // этот arguments содержит func, а не аргументы func
-            var args = arguments; 
-            
-            var argsArr = [].slice.call(args);
-            argsArr.push(callback);
-
-            func.apply(this, argsArr);
+           
+            args.push(callback);
+            func.apply(this, args);
         });
     }
 }
