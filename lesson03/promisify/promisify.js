@@ -13,34 +13,42 @@ const fs = require('fs');
 //     })
 
 var readFileFunc = promisify(fs.readFile);
-readFileFunc('passwd', {encoding: 'utf-8'})
+readFileFunc('passwd', { encoding: 'utf-8' })
     .then(data => {
-        console.log(data);
+        console.log(data.toString());
     })
     .catch(err => {
         console.log(`Error: ${err}`);
     });
 
 var accessFunc = promisify(fs.access);
-accessFunc('passwd', fs.constants.R_OK)
+accessFunc('passwd', fs.constants.W_OK)
     .then(_ => {
         console.log('read');
     })
     .catch(err => {
-        console.log('no access');
+        console.log(`Error: ${err}`);
     });
 
 function promisify(func) {
-    return (data, parameters) => {
+    return (/* не знаю, как вытащить отсюда arguments*/) => {
         return new Promise((resolve, reject) => {
-            func(data, parameters, (err, result) => {
+            var callback = (err, result) => {
                 if (err) {
                     reject(err);
                     return;
                 }
-
                 resolve(result);
-            })
+            };
+
+            // этот arguments содержит func, а не аргументы func
+            var args = arguments; 
+            
+            var argsArr = [].slice.call(args);
+            argsArr.push(callback);
+
+            func.apply(this, argsArr);
         });
     }
 }
+
