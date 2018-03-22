@@ -3,6 +3,7 @@ const path = require('path')
 
 // Запускать так: npm run tree -- "./node_modules"
 const inputDir = process.argv[2];
+
 if (!fs.lstatSync(inputDir).isDirectory()) {
   console.error("Argument must be a folder path!");
   return;
@@ -25,25 +26,36 @@ function readFiles(dir, callback) {
   function readFilesEx(dir) {
     return new Promise((resolve, reject) => {
       fs.readdir(dir, function (err, files) {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+          return;
+        }
+
         console.log('Dir: ' + dir);
+        var innerDirs = [];
 
         files.forEach(function (file) {
           var fileName = path.join(dir, file);
           if (fs.lstatSync(fileName).isDirectory()) {
             result.folders.push(file);
-            chain
-              .then(() => readFilesEx(fileName))
-              .then(() => {
-                console.log('Resolved ' + dir);
-                resolve();
-              });
+            innerDirs.push(fileName);
           }
           else {
             result.files.push(file);
             console.log('File: ' + file);
           }
         });
+
+        innerDirs.forEach(function (innerDir) {
+          chain.then(readFilesEx(innerDir));
+        });
+
+        chain
+          .then(() => {
+            console.log('Resolved ' + dir);
+            resolve();
+          });
+
       });
     });
   }
