@@ -9,22 +9,22 @@ if (!fs.lstatSync(inputDir).isDirectory()) {
   return;
 }
 
-readFiles(inputDir, printResult);
+readFiles(inputDir);
 
-function readFiles(dir, callback) {
+function readFiles(dir) {
   var result = {
     files: [],
     folders: []
   };
 
-  var chain = Promise.resolve();
-
-  chain
+  Promise.resolve()
     .then(() => readFilesEx(dir))
-    .then(() => callback(result));
+    .then(() => printResult(result));
 
   function readFilesEx(dir) {
-    return new Promise((resolve, reject) => {
+    var innerDirs = [];
+
+    var p = new Promise((resolve, reject) => {
       fs.readdir(dir, function (err, files) {
         if (err) {
           reject(err);
@@ -32,7 +32,6 @@ function readFiles(dir, callback) {
         }
 
         console.log('Dir: ' + dir);
-        var innerDirs = [];
 
         files.forEach(function (file) {
           var fileName = path.join(dir, file);
@@ -46,18 +45,35 @@ function readFiles(dir, callback) {
           }
         });
 
-        innerDirs.forEach(function (innerDir) {
-          chain.then(readFilesEx(innerDir));
-        });
-
-        chain
-          .then(() => {
-            console.log('Resolved ' + dir);
-            resolve();
-          });
-
+        resolve(result);
       });
     });
+
+    // Это не работает, код вообще не выполняется
+    innerDirs.forEach(function (innerDir) {
+      p = p.then(() => {
+        return readFilesEx(innerDir);
+      });
+    });
+
+    // Это работает (последовательная обработка подпапок)
+    // p = p.then(() => {
+    //   if (innerDirs.length > 0) {
+    //     return readFilesEx(innerDirs[0]);
+    //   }
+    // });
+
+    // p = p.then(() => {
+    //   if (innerDirs.length > 1) {
+    //     return readFilesEx(innerDirs[1]);
+    //   }
+    // });
+
+    p = p.then(() => {
+      console.log('Resolved ' + dir);
+    });
+
+    return p;
   }
 }
 
