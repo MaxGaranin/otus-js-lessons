@@ -3,7 +3,7 @@ const Readable = require('stream').Readable;
 class Counter extends Readable {
     constructor(opt) {
         super(opt);
-        this._max = 500;
+        this._max = 500; // Генерируем 500 чисел
         this._index = 1;
     }
 
@@ -12,10 +12,9 @@ class Counter extends Readable {
         if (i > this._max)
             this.push(null);
         else {
-            var value = Math.random();
-            var str = value.toString() + ';';
-            var buf = Buffer.from(str, 'ascii');
-            this.push(buf);
+            // Генерируем случайные числа от 0 до 100
+            var value = Math.floor(Math.random() * 100);
+            this.push(value);
         }
     }
 }
@@ -28,7 +27,8 @@ class ConsoleWriter extends Writable {
     }
 
     _write(chunk, encoding, callback) {
-        process.stdout.write(chunk);
+        // Вывод данных в консоль
+        process.stdout.write(chunk.toString() + ' ');
         callback();
     }
 }
@@ -41,14 +41,21 @@ class MyTransformer extends Transform {
     }
 
     _transform(chunk, encoding, callback) {
-        //var s = cvt.bytesToString(chunk);
+        // Добавляем случайное число от 0 до 10 
+        var delta = Math.floor(Math.random() * 10);
+        chunk = chunk + delta;
         this.push(chunk);
         callback();
     }
 }
 
-var counter = new Counter();
-var consoleWriter = new ConsoleWriter();
-var myTransformer = new MyTransformer();
+var options = {
+    objectMode: true, // передача объектов, а не байтов
+    highWaterMark: 5  // количество объектов в буфере
+};
+
+var counter = new Counter(options);
+var consoleWriter = new ConsoleWriter(options);
+var myTransformer = new MyTransformer(options);
 
 counter.pipe(myTransformer).pipe(consoleWriter);
