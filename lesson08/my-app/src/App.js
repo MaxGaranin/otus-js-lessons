@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import Footer from './Footer';
 
 class App extends Component {
+
+  navs = [
+    { id: "56c782f1978fdf9a0100df52", title : "Главная", ref : "#Main"},
+    { id: "56c782f1978fdf9a0100df53", title : "Статьи", ref : "#Articles"},
+    { id: "56c782f1978fdf9a0100df54", title : "Программы", ref : "#Programs"},
+    { id: "56c782f1978fdf9a0100df55", title : "Контакты", ref : "#Contacts"},            
+  ];
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <Header navs={this.navs}  />        
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <article>
+          <div>Acticle</div>
+        </article>
+        <footer>
+          <Footer userName="Vasya" />        
+        </footer>        
       </div>
     );
   }
