@@ -2,36 +2,37 @@ const fs = require('fs');
 const path = require('path')
 
 // Запускать так: npm run tree -- "./node_modules"
-const inputDir = "d:\\work835\\Temp\\Резюме"; //process.argv[2];
+const inputDir = process.argv[2];
 
 if (!fs.lstatSync(inputDir).isDirectory()) {
   console.error("Argument must be a folder path!");
   return;
 }
 
-readFiles(inputDir);
+readFiles(inputDir)
+  .then((res) => printResult(res));
 
 function readFiles(dir) {
-  var result = {
+  let result = {
     files: [],
     folders: []
   };
 
-  Promise.resolve()
-    .then(() => readFilesEx(dir))
-    .then(() => printResult(result));
+  return new Promise((resolve, reject) => {
+    readFilesRecursive(dir, result)
+      .then(() => resolve(result));
+  });
 
-  function readFilesEx(dir) {
-    var innerDirs = [];
-
-    var p = new Promise((resolve, reject) => {
+  function readFilesRecursive(dir, result) {
+    let p = new Promise((resolve, reject) => {
       fs.readdir(dir, function (err, files) {
         if (err) {
           reject(err);
           return;
         }
+        // console.log('Dir: ' + dir);
 
-        console.log('Dir: ' + dir);
+        var innerDirs = [];
 
         files.forEach(function (file) {
           var fileName = path.join(dir, file);
@@ -41,48 +42,27 @@ function readFiles(dir) {
           }
           else {
             result.files.push(file);
-            console.log('File: ' + file);
+            // console.log('File: ' + file);
           }
         });
 
-        resolve(result);
+        resolve(innerDirs);
       });
     })
-      .then(() => {
-        var p2 = Promise.resolve();
+      .then((innerDirs) => {
+        let p2 = Promise.resolve();
 
-        for (let i = 0; i < innerDirs.length; i++) {
+        innerDirs.forEach(function (innerDir) {
           p2 = p2.then(() => {
-            return readFilesEx(innerDirs[i]);
+            return readFilesRecursive(innerDir, result);
           });
-        }
+        });
 
         return p2;
       })
       .then(() => {
-        console.log('Resolved ' + dir);
+        // console.log('Resolved ' + dir);
       });
-
-    // Это не работает, код вообще не выполняется
-    // innerDirs.forEach(function (innerDir) {
-    //   p = p.then(() => {
-    //     return readFilesEx(innerDir);
-    //   });
-    // });
-
-
-    // // Это работает (последовательная обработка подпапок)
-    // p = p.then(() => {
-    //   if (innerDirs.length > 0) {
-    //     return readFilesEx(innerDirs[0]);
-    //   }
-    // });
-
-    // p = p.then(() => {
-    //   if (innerDirs.length > 1) {
-    //     return readFilesEx(innerDirs[1]);
-    //   }
-    // });
 
     return p;
   }
