@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path')
 
 // Запускать так: npm run tree -- "./node_modules"
-const inputDir = process.argv[2];
+const inputDir = "d:\\work835\\Temp\\Резюме"; //process.argv[2];
 
 if (!fs.lstatSync(inputDir).isDirectory()) {
   console.error("Argument must be a folder path!");
@@ -47,16 +47,31 @@ function readFiles(dir) {
 
         resolve(result);
       });
-    });
+    })
+      .then(() => {
+        var p2 = Promise.resolve();
+
+        for (let i = 0; i < innerDirs.length; i++) {
+          p2 = p2.then(() => {
+            return readFilesEx(innerDirs[i]);
+          });
+        }
+
+        return p2;
+      })
+      .then(() => {
+        console.log('Resolved ' + dir);
+      });
 
     // Это не работает, код вообще не выполняется
-    innerDirs.forEach(function (innerDir) {
-      p = p.then(() => {
-        return readFilesEx(innerDir);
-      });
-    });
+    // innerDirs.forEach(function (innerDir) {
+    //   p = p.then(() => {
+    //     return readFilesEx(innerDir);
+    //   });
+    // });
 
-    // Это работает (последовательная обработка подпапок)
+
+    // // Это работает (последовательная обработка подпапок)
     // p = p.then(() => {
     //   if (innerDirs.length > 0) {
     //     return readFilesEx(innerDirs[0]);
@@ -68,10 +83,6 @@ function readFiles(dir) {
     //     return readFilesEx(innerDirs[1]);
     //   }
     // });
-
-    p = p.then(() => {
-      console.log('Resolved ' + dir);
-    });
 
     return p;
   }
