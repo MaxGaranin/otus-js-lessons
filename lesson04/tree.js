@@ -13,12 +13,12 @@ readFiles(inputDir)
   .then((res) => printResult(res));
 
 function readFiles(dir) {
-  let result = {
-    files: [],
-    folders: []
-  };
-
   return new Promise((resolve, reject) => {
+    let result = {
+      files: [],
+      folders: []
+    };
+
     readFilesRecursive(dir, result)
       .then(() => resolve(result));
   });
@@ -30,7 +30,6 @@ function readFiles(dir) {
           reject(err);
           return;
         }
-        // console.log('Dir: ' + dir);
 
         var innerDirs = [];
 
@@ -42,7 +41,6 @@ function readFiles(dir) {
           }
           else {
             result.files.push(file);
-            // console.log('File: ' + file);
           }
         });
 
@@ -50,18 +48,15 @@ function readFiles(dir) {
       });
     })
       .then((innerDirs) => {
-        let p2 = Promise.resolve();
+        let innerPromise = Promise.resolve();
 
         innerDirs.forEach(function (innerDir) {
-          p2 = p2.then(() => {
+          innerPromise = innerPromise.then(() => {
             return readFilesRecursive(innerDir, result);
           });
         });
 
-        return p2;
-      })
-      .then(() => {
-        // console.log('Resolved ' + dir);
+        return innerPromise;
       });
 
     return p;
