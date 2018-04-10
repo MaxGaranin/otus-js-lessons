@@ -4,8 +4,8 @@ class SearchExample extends Component {
     constructor() {
         super();
         this.state = {
-            searchString: '';
-    }
+            searchString: ''
+        }
     }
 
     render() {
@@ -14,8 +14,8 @@ class SearchExample extends Component {
 
 
         if (searchString.length > 0) {
-            libraries = libraries.filter(function (l) {
-                return l.name.toLowerCase().match(searchString);
+            libraries = libraries.filter(function (lib) {
+                return lib.name.toLowerCase().match(searchString);
             });
         }
 
