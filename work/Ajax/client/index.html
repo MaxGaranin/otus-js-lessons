@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+
+        fetch('http://api.openweathermap.org/data/2.5/find?q=Самара&type=like&APPID=24215f7ef5d6a6c4522776d91a6366ca')
+            .then(function (response) {
+                //alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
+                //alert(response.status); // 200
+
+                return response.json();
+            })
+            .then(function (user) {
+                alert(user); // iliakan
+            })
+            .catch(alert);
+
+    </script>
+</body>
+
+</html>

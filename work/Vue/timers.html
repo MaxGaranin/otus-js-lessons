@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Timers</title>
+</head>
+
+<body>
+    <div id="timer"></div>
+    <div id="clock"></div>
+
+    <script>
+
+        setupTimer("timer", 1, 5);
+        setupClock("clock");
+
+        function setupTimer(elemId, minutes, seconds) {
+            var stopTime = new Date();
+
+            if (minutes) {
+                stopTime.setMinutes(stopTime.getMinutes() + minutes);
+            }
+
+            if (seconds) {
+                stopTime.setSeconds(stopTime.getSeconds() + seconds);
+            }
+
+            var timerId = setInterval(function () {
+                var currentTime = new Date();
+
+                var diff = stopTime - currentTime;
+                if (diff <= 0) clearInterval(timerId);
+
+                var elem = document.getElementById(elemId);
+                elem.innerHTML = timeSpanToString(diff);
+            }, 1000);
+        }
+
+        function setupClock(elemId) {
+            setInterval(function () {
+                var currentDate = new Date();
+
+                var elem = document.getElementById(elemId);
+                elem.innerHTML = timeToString(currentDate);
+            }, 1000);
+        }
+
+        function timeToString(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            var result =
+                formatTimeNumber(hours) + ":" +
+                formatTimeNumber(minutes) + ":" +
+                formatTimeNumber(seconds);
+
+            return result;
+        }
+
+        function timeSpanToString(msec) {
+            var hours = Math.floor(msec / 1000 / 60 / 60);
+            msec -= hours * 1000 * 60 * 60;
+            var minutes = Math.floor(msec / 1000 / 60);
+            msec -= minutes * 1000 * 60;
+            var seconds = Math.floor(msec / 1000);
+            msec -= seconds * 1000;
+
+            var result =
+                formatTimeNumber(hours) + ":" +
+                formatTimeNumber(minutes) + ":" +
+                formatTimeNumber(seconds);
+
+            return result;
+        }
+
+        function formatTimeNumber(n) {
+            if (n < 10) {
+                return "0" + n;
+            }
+            else {
+                return n.toString();
+            }
+        }
+    </script>
+</body>
+
+</html>

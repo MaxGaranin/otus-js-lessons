@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <my-link v-for="item in links" v-bind:link="item" />
+        </ul>
+    </div>
+
+    <script>
+        Vue.component('my-link', {
+            props: ['link'],
+            template: '<li><a :href="link">{{ link }}</a></li>'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                links: [
+                    "https://mail.ru",
+                    "https://google.com",
+                    "https://yandex.ru"
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
