@@ -13,7 +13,7 @@ class MenuExample extends Component {
 
         return (
             <div>
-                <ul>{this.props.items.map(function (m, index) {
+                <ul class='no-point'>{this.props.items.map(function (m, index) {
                     var style = '';
                     if (self.state.focused === index) {
                         style = 'focused';

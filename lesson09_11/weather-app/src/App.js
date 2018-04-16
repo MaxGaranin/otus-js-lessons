@@ -11,7 +11,7 @@ class App extends Component {
             <div className="App">
                 <MenuExample items={['Home', 'Services', 'About', 'Contact us']}/>
 
-                <SearchExample items={libraries}/>
+                {/* <SearchExample items={libraries}/> */}
 
                 <CitySelector/>
             </div>

@@ -15,12 +15,15 @@ class CitySelector extends Component {
         return (
             <ReactAutocomplete
                 items={cities}
-                shouldItemRender={(item, value) => item.city.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                shouldItemRender={(item, value) => item.city.toLowerCase().indexOf(value.toLowerCase()) === 0}
                 getItemValue={item => item.city}
                 renderItem={(item, highlighted) =>
                     <div
                         key={item.id}
-                        style={{backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                        style={{
+                            backgroundColor: highlighted ? '#eee' : 'transparent',
+                            textAlign: 'left'
+                        }}
                     >
                         {item.city}
                     </div>
