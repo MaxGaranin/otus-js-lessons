@@ -6,29 +6,43 @@
 </head>
 
 <body>
-    <div id="app">
-        <ul>
-            <my-link v-for="item in links" v-bind:link="item" />
-        </ul>
-    </div>
+<div id="app">
+    <ul>
+        <my-link v-for="item in links"
+                 v-bind:link="item"
+                 v-on:my-event="myMethod"/>
+    </ul>
+</div>
 
-    <script>
-        Vue.component('my-link', {
-            props: ['link'],
-            template: '<li><a :href="link">{{ link }}</a></li>'
-        })
+<script>
+    Vue.component('my-link', {
+        props: ['link'],
+        template: `
+                <li>
+                    <a :href="link"
+                       @click.prevent="$emit('my-event', link)">
+                        {{ link }}
+                    </a>
+                </li>
+            `
+    });
 
-        var app = new Vue({
-            el: '#app',
-            data: {
-                links: [
-                    "https://mail.ru",
-                    "https://google.com",
-                    "https://yandex.ru"
-                ]
+    var app = new Vue({
+        el: '#app',
+        data: {
+            links: [
+                "https://mail.ru",
+                "https://google.com",
+                "https://yandex.ru"
+            ]
+        },
+        methods: {
+            myMethod: function(value) {
+                console.log(value);
             }
-        })
-    </script>
+        }
+    });
+</script>
 </body>
 
 </html>
