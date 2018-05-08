@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+<div id="app">
+    <input type="number" v-model="value">
+    <p>Value is: {{ value }}</p>
+
+    <input type="checkbox" v-model="checked">
+    <p>Checkbox is: {{ checked }}</p>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            value: 5,
+            checked: true,
+            links: [
+                "https://mail.ru",
+                "https://google.com",
+                "https://yandex.ru"
+            ]
+        },
+
+        methods: {
+            myMethod: function(value) {
+                console.log(value);
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

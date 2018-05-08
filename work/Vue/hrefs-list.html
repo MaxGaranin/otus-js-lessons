@@ -7,25 +7,21 @@
 
 <body>
 <div id="app">
-    <ul>
-        <my-link v-for="item in links"
-                 v-bind:link="item"
-                 v-on:my-event="myMethod"/>
-    </ul>
 </div>
 
 <script>
-    Vue.component('my-link', {
-        props: ['link'],
-        template: `
-                <li>
-                    <a :href="link"
-                       @click.prevent="$emit('my-event', link)">
-                        {{ link }}
-                    </a>
-                </li>
-            `
-    });
+    var person = {
+        age: 2,
+        name: 'Vasya',
+        getStatus: function () {
+            return this.age > 16 ? 'adult' : 'little'
+        },
+        doWork() {
+            this.age += 3;
+        }
+    };
+
+    person.doWork();
 
     var app = new Vue({
         el: '#app',
@@ -36,10 +32,28 @@
                 "https://yandex.ru"
             ]
         },
+
+        computed: {
+            mylinks: function () {
+                return this.links
+            }
+        },
+
         methods: {
-            myMethod: function(value) {
+            myMethod: function (value) {
                 console.log(value);
             }
+        },
+
+        render(createElement) {
+            return createElement('li', [
+                createElement('a', {
+                    attrs: {
+                        name: this.links[0],
+                        href: '#' + this.links[0]
+                    },
+                }, this.links[0])
+            ]);
         }
     });
 </script>

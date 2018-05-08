@@ -30,13 +30,35 @@ function User(fullName) {
     });    
 }
 
-var vasya = new User("Василий Попкин");
+var a = {
+    _temp: 1,
+}
 
-console.log(vasya.firstName);
-console.log(vasya.lasttName);
+Object.defineProperty(a, "b",
+    {
+        get: function () {
+            return this._temp;
+        },
+        set: function (value) {
+            this._temp = this._temp + value;
+        },
+        enumerable: true,
+        configurable: true
+    });
 
-vasya.firstName = "Иван";
-vasya.lastName = "Сидоров";
+console.log(a.b);
+a.b = 4;
+console.log(a.b);
+a.b = 5;
+console.log(a.b);
 
-console.log(vasya.fullName);
+// var vasya = new User("Василий Попкин");
+
+// console.log(vasya.firstName);
+// console.log(vasya.lasttName);
+//
+// vasya.firstName = "Иван";
+// vasya.lastName = "Сидоров";
+//
+// console.log(vasya.fullName);
 
