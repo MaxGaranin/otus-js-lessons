@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./jquery-3.3.1.js"></script>
+</head>
+<body>
+    <button id="myButton">Загрузить</button>
+    <div id="news">
+        <h3>Нет новостей</h3>
+    </div>
+
+    <script type="text/javascript">
+        // Using YQL and JSONP
+        // $.ajax({
+        //     url: "api.openweathermap.org/data/2.5/weather?q=%D1%81%D0%B0%D0%BC%D0%B0%D1%80%D0%B0&appid=24215f7ef5d6a6c4522776d91a6366ca",
+        //
+        //     // The name of the callback parameter, as specified by the YQL service
+        //     jsonp: "callback",
+        //
+        //     // Tell jQuery we're expecting JSONP
+        //     dataType: "jsonp",
+        //
+        //     // Work with the response
+        //     success: function( response ) {
+        //         // console.log( response ); // server response
+        //     }
+        // });
+
+        $(function () {
+            $('#myButton').click(function () {
+                $('#news').load('https://www.sports.ru/rss/main.xml');
+            });
+        });
+    </script>
+</body>
+</html>
