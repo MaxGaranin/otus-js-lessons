@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+<div>
+    <pre id="result"></pre>
+</div>
+<script>
+
+    // let request = 'http://api.openweathermap.org/data/2.5/find?q=Самара&type=like&APPID=24215f7ef5d6a6c4522776d91a6366ca';
+
+    let encodedText = "огурец";
+    var request = `
+https://translate.yandex.net/api/v1.5/tr.json/translate
+?key=trnsl.1.1.20160921T123454Z.ce18d1c36825c6e2.ff2e03b9566f98dedfc99e576eca52798d12c366
+&text=${encodedText}
+&lang=ru-en
+`;
+
+    fetch(request, {
+        mode: 'cors'
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (result) {
+            console.log(result);
+            document.getElementById('result').innerHTML = JSON.stringify(result, "", 4);
+        })
+        .catch(alert);
+
+</script>
+</body>
+
+</html>

@@ -11,4 +11,9 @@
     <button mat-button (click)="increase($event)">Add New</button>
     <span>Количество кликов: {{count}}</span>
   </div>
+  <div>
+    <input type="text" #textToTranslate/>
+    <button mat-button (click)="translate(textToTranslate.value)">Translate</button>
+    <span>Перевод: {{translateResult}}</span>
+  </div>
 </div>
