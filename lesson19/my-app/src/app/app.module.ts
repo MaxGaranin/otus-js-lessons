@@ -8,6 +8,7 @@ import { RecentlyAddedComponent } from './recently-added/recently-added.componen
 import { SettingsComponent } from './settings/settings.component';
 import { GoComponent } from './go/go.component';
 import { AddNewComponent } from './add-new/add-new.component';
+import {TranslatorService} from "./translator.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AddNewComponent } from './add-new/add-new.component';
     MatSelectModule,
     MatOptionModule
   ],
-  providers: [],
+  providers: [TranslatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
