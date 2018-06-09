@@ -9,6 +9,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { GoComponent } from './go/go.component';
 import { AddNewComponent } from './add-new/add-new.component';
 import {TranslatorService} from "./translator.service";
+import {PageNotFoundComponent} from "./not-found-component";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import {TranslatorService} from "./translator.service";
     RecentlyAddedComponent,
     SettingsComponent,
     GoComponent,
-    AddNewComponent
+    AddNewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    AppRoutingModule
   ],
   providers: [TranslatorService],
   bootstrap: [AppComponent]
