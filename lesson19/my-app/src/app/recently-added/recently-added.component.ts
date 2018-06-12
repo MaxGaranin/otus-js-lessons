@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TranslatorService} from "../translator.service";
+import {MatDialog} from "@angular/material";
+import {AddNewComponent} from "../add-new/add-new.component";
 
 @Component({
   selector: 'app-recently-added',
@@ -8,18 +9,23 @@ import {TranslatorService} from "../translator.service";
 })
 export class RecentlyAddedComponent implements OnInit {
 
-  constructor(private _translateService: TranslatorService) {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit() {
   }
 
-  translateResult: string;
+  addNew(): void {
+    let dialogRef = this.dialog.open(AddNewComponent, {
+      data: 'hello'
+    });
 
-  translate(text) {
-    let encodedText = encodeURIComponent(text);
-    this._translateService.translate(encodedText)
-      .then((result: string) => this.translateResult = result)
-      .catch(error => console.log(error));
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+      if (result) {
+        localStorage.setItem(result.wordToTranslate, result.translateResult)
+      }
+    });
   }
 }

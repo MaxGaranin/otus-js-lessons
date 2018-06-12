@@ -8,11 +8,6 @@
     <p>responsible - ответственный</p>
   </div>
   <div>
-    <button mat-button>Add New</button>
-  </div>
-  <div>
-    <input type="text" #textToTranslate/>
-    <button mat-button (click)="translate(textToTranslate.value)">Translate</button>
-    <span>Перевод: {{translateResult}}</span>
+    <button mat-raised-button (click)="addNew()">Add New</button>
   </div>
 </div>

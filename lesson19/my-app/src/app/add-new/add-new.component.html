@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Add new word</h2>
+
+<mat-dialog-content>
+  <div>
+    <span width="50px">Input english word</span>
+    <input width="50px" matInput
+           [(ngModel)]="mydata.wordToTranslate">
+    <button mat-button (click)="translate(mydata.wordToTranslate)">Translate</button>
+  </div>
+
+  <div>
+    <span width="50px">Translated word</span>
+    <span width="50px">{{mydata.translateResult}}</span>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div>
+    <button mat-button [mat-dialog-close]="mydata">OK</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </div>
+</mat-dialog-actions>
+
+
