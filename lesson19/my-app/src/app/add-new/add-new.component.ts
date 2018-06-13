@@ -11,20 +11,19 @@ export class AddNewComponent implements OnInit {
 
   constructor(
     private _translateService: TranslatorService,
-    public dialogRef: MatDialogRef<AddNewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {}
 
-  mydata: any = {
-    wordToTranslate: '',
-    translateResult: ''
+  translateData: any = {
+    word: '',
+    translation: ''
   }
 
   translate(text): void {
     if (!text) {
-      this.mydata.translateResult = '';
+      this.translateData.translation = '';
       return;
     }
 
@@ -32,7 +31,7 @@ export class AddNewComponent implements OnInit {
 
     this._translateService.translate(encodedText)
       .then((result: string) => {
-        this.mydata.translateResult = decodeURIComponent(result);
+        this.translateData.translation = decodeURIComponent(result);
       })
       .catch(error => console.log(error));
   }

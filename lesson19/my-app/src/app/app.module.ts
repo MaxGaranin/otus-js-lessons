@@ -6,6 +6,7 @@ import {
   MatButtonModule,
   MatSelectModule,
   MatOptionModule,
+  MatGridListModule,
   MatDialog,
   MatDialogModule,
   MAT_DIALOG_DATA
@@ -19,6 +20,7 @@ import {AddNewComponent} from './add-new/add-new.component';
 import {TranslatorService} from "./translator.service";
 import {PageNotFoundComponent} from "./not-found-component";
 import {AppRoutingModule} from "./app-routing.module";
+import {KeysPipe} from "./recently-added/utils";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {AppRoutingModule} from "./app-routing.module";
     SettingsComponent,
     GoComponent,
     AddNewComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    KeysPipe
   ],
   entryComponents: [
     AddNewComponent
@@ -36,11 +39,12 @@ import {AppRoutingModule} from "./app-routing.module";
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    AppRoutingModule,
     MatButtonModule,
     MatSelectModule,
     MatOptionModule,
-    AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   providers: [
     TranslatorService,

@@ -1,13 +1,14 @@
 <div>
-  <!--Заготовка для списка добавленных слов-->
   <div>
-    <p>24 мая 2018</p>
-    <p>to apply - добавлять</p>
-    <p>education - образование</p>
-    <p>to go - идти</p>
-    <p>responsible - ответственный</p>
+    <ul>
+      <li *ngFor="let entry of wordsMap | keys">
+        {{entry.key}}&nbsp;-&nbsp;{{entry.value}}
+      </li>
+    </ul>
   </div>
   <div>
-    <button mat-raised-button (click)="addNew()">Add New</button>
+    <button mat-raised-button (click)="addNewWord()">
+      Add New
+    </button>
   </div>
 </div>
