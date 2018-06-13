@@ -21,7 +21,7 @@ export class AddNewComponent implements OnInit {
     translation: ''
   }
 
-  translate(text): void {
+  translate(text: string): void {
     if (!text) {
       this.translateData.translation = '';
       return;
