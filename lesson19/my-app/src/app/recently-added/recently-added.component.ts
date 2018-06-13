@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {AddNewComponent} from "../add-new/add-new.component";
-import {PersistService, WordToTranslationMap} from "../persist.service";
+import {WordService, WordToTranslationMap} from "../word.service";
 
 @Component({
   selector: 'app-recently-added',
@@ -12,7 +12,7 @@ export class RecentlyAddedComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private persistService: PersistService) {
+    private _wordService: WordService) {
   }
 
   ngOnInit() {
@@ -22,19 +22,15 @@ export class RecentlyAddedComponent implements OnInit {
   wordsMap: WordToTranslationMap;
 
   fillWordsList(): void {
-    this.wordsMap = this.persistService.getWords();
+    this.wordsMap = this._wordService.getWords();
   }
 
   addNewWord(): void {
-    let dialogRef = this.dialog.open(AddNewComponent, {
-      data: 'hello'
-    });
+    let dialogRef = this.dialog.open(AddNewComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
       if (result && result.translation && !this.wordsMap[result.word]) {
-        this.persistService.addWord(result.word, result.translation);
+        this._wordService.addWord(result.word, result.translation);
         this.fillWordsList();
       }
     });
