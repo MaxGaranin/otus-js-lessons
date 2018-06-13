@@ -1,14 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddNewComponent } from './add-new.component';
+import {TranslatorService} from "../translator.service";
 
 describe('AddNewComponent', () => {
   let component: AddNewComponent;
   let fixture: ComponentFixture<AddNewComponent>;
+  let translatorServiceStub = {
+    translate: (text: string) => {
+      if (text == 'hello') {
+        return 'привет';
+      }
+      if (text == 'world') {
+        return 'мир';
+      }
+      else {
+        return null;
+      }
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddNewComponent ]
+      declarations: [ AddNewComponent ],
+      providers: [{provide: TranslatorService, useValue: translatorServiceStub}]
     })
     .compileComponents();
   }));
@@ -21,5 +36,13 @@ describe('AddNewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should translate', () => {
+    var result = component.translate('hello');
+    expect(result).toBe('привет');
+
+    var result = component.translate('world');
+    expect(result).toBe('мир');
   });
 });
