@@ -62,9 +62,9 @@ describe('AddNewComponent', () => {
 
   it('should translate', () => {
     var result = component.translate('hello');
-    expect(result).toBe('привет');
+    expect(component.translateData.translation).toBe('привет');
 
     var result = component.translate('world');
-    expect(result).toBe('мир');
+    expect(component.translateData.translation).toBe('мир');
   });
 });
