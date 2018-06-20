@@ -4,7 +4,7 @@
   "description": "",
   "main": "series-console.js",
   "scripts": {
-    "start": "node series-console.js",
+    "start": "node async-series-console.js",
     "test": "jest"
   },
   "keywords": [],

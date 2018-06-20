@@ -1,4 +1,4 @@
-const seriesAsync = require('../series').seriesAsync;
+const seriesAsync = require('../async-series');
 
 var isRunFn1 = false;
 var isRunFn2 = false;
@@ -45,8 +45,9 @@ var fn4 = function (next, callback) {
 }
 
 describe('Test series() function', () => {
+    beforeEach(init);
+
     it('Run series() with 4 functions, interrupt on 3, last function in invoked', () => {
-        init();
         seriesAsync(fn1, fn2, fn3, fn4).then(() => {
             expect(isRunFn1).toBe(true);
             expect(isRunFn2).toBe(true);
@@ -56,7 +57,6 @@ describe('Test series() function', () => {
     });
 
     it('Run series with no functions', () => {
-        init();
         seriesAsync().then(() => {
             expect(isRunFn1).toBe(false);
             expect(isRunFn2).toBe(false);

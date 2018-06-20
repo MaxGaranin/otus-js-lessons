@@ -1,4 +1,4 @@
-const seriesAsync = require('./series').seriesAsync;
+const seriesAsync = require('./async-series');
 
 var fn1 = function (next) {
     console.log('Function 1...');
