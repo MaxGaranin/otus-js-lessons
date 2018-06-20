@@ -1,13 +1,6 @@
 function seriesSync(...fns) {
     if (fns.length == 0) return;
 
-    // Флаг проверки запуска функции next на каждой функции цепочки
-    let isExecuted = false;
-
-    // Глобальный флаг, после установки которого прерывается цепочка выполнения 
-    // и выполняется последняя функция
-    let stopFlag = false;
-
     function next(...args) {
         // Цепочка прерывается при запуске next() с каким-либо аргументом
         if (args.length > 0) {
@@ -15,6 +8,13 @@ function seriesSync(...fns) {
         }
         isExecuted = true;
     }
+    
+    // Флаг проверки запуска функции next на каждой функции цепочки
+    let isExecuted = false;
+
+    // Глобальный флаг, после установки которого прерывается цепочка выполнения 
+    // и выполняется последняя функция
+    let stopFlag = false;
 
     for (let i = 0; i < fns.length - 1; i++) {
         if (stopFlag) {
