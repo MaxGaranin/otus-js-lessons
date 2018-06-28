@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material";
-import {TranslatorService} from "../translator.service";
+import {MAT_DIALOG_DATA} from '@angular/material';
+import {TranslatorService} from '../translator.service';
 
 @Component({
   selector: 'app-add-new',
@@ -10,16 +10,15 @@ import {TranslatorService} from "../translator.service";
 export class AddNewComponent implements OnInit {
 
   constructor(
-    private _translateService: TranslatorService,
+    private translatorService: TranslatorService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
-
-  ngOnInit() {}
 
   translateData: any = {
     word: '',
     translation: ''
-  }
+  };
+  ngOnInit() {}
 
   translate(text: string): void {
     if (!text) {
@@ -27,13 +26,12 @@ export class AddNewComponent implements OnInit {
       return;
     }
 
-    let encodedText = encodeURIComponent(text);
+    const encodedText = encodeURIComponent(text);
 
-    this._translateService.translate(encodedText)
+    this.translatorService.translate(encodedText)
       .then((result: string) => {
         this.translateData.translation = decodeURIComponent(result);
       })
       .catch(error => console.log(error));
   }
-
 }
