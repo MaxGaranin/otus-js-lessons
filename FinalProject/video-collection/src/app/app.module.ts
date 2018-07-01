@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesService } from './movies.service';
+import {ModalModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MoviesService } from './movies.service';
     MovieCardComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ModalModule.forRoot(),
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent]
