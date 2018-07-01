@@ -1,3 +1,14 @@
-<p>
-  movies-list works!
-</p>
+<div>
+  <div>
+    <ul>
+      <li *ngFor="let movie of movies">
+        {{movie.id}}&nbsp;-&nbsp;{{movie.title}}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <button mat-raised-button (click)="addMovie()">
+      Add New
+    </button>
+  </div>
+</div>
