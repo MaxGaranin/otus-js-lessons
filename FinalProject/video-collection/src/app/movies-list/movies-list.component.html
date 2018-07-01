@@ -3,12 +3,14 @@
     <ul>
       <li *ngFor="let movie of movies">
         {{movie.id}}&nbsp;-&nbsp;{{movie.title}}
+        <button (click)="deleteMovie(movie.id)">Удалить</button>
+        <button>Редактировать</button>
       </li>
     </ul>
   </div>
   <div>
     <button mat-raised-button (click)="addMovie()">
-      Add New
+      Добавить
     </button>
   </div>
 </div>
