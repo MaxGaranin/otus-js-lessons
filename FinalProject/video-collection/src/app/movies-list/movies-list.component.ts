@@ -2,6 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {MoviesService} from "../movies.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {MovieCardComponent} from "../movie-card/movie-card.component";
 
 @Component({
   selector: 'app-movies-list',
@@ -40,8 +41,39 @@ export class MoviesListComponent implements OnInit {
       });
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  addMovie() {
+    let newMovie = {
+      Id: -1,
+      Title: '',
+      Year: 2018,
+      Runtime: 0,
+      Genres: [],
+      Director: '',
+      Actors: [],
+      Comment: ''
+    };
+
+    let initialState = {
+      movie: newMovie
+    };
+
+    this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
+    this.modalRef.content.dialogResult.subscribe(result => {
+      console.log('results', result);
+    });
+  }
+
+  editMovie(movie: any) {
+    let movieToEdit = Object.assign({}, movie);
+
+    let initialState = {
+      movie: movieToEdit
+    };
+
+    this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
+    this.modalRef.content.dialogResult.subscribe(result => {
+      console.log('results', result);
+    });
   }
 
 }

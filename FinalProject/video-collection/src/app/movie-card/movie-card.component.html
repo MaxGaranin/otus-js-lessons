@@ -1,16 +1,16 @@
 <div>
   <label>Название</label>
-  <input type="text" />
+  <input [(ngModel)]="movie.Title" />
 </div>
 
 <div>
   <label>Год выпуска</label>
-  <input type="text" />
+  <input type="text" [value]="movie.Year" />
 </div>
 
 <div>
   <label>Продолжительность, мин</label>
-  <input type="text" />
+  <input type="text" [value]="movie.Runtime"/>
 </div>
 
 <div>
@@ -20,7 +20,7 @@
 
 <div>
   <label>Режиссер</label>
-  <input type="text" />
+  <input type="text" [value]="movie.Director"/>
 </div>
 
 <div>
@@ -30,11 +30,11 @@
 
 <div>
   <label>Краткое описание</label>
-  <textarea></textarea>
+  <textarea [value]="movie.Comment"></textarea>
 </div>
 
 <div>
-  <button>ОК</button>
-  <button>Отмена</button>
+  <button class="btn btn-primary" (click)="Ok()">ОК</button>
+  <button class="btn btn-secondary" (click)="Cancel()">Отмена</button>
 </div>
 
