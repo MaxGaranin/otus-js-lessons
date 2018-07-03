@@ -1,32 +1,30 @@
 import {Injectable} from '@angular/core';
+import {Movie} from "./entities/movie";
 
 declare var require: any;
-var moviesData = require('./../db/db.json');
+var moviesDb = require('./../db/db.json');
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
 
+  pageSize = 10;
+
   constructor() {
   }
 
-  pageSize = 10;
-
-  getMovies(page, sortBy, searchStr) {
-    let movies = this.searchMovies(moviesData.movies, searchStr);
+  getMovies(page: number, sortBy: string, searchStr: string) {
+    let movies = this.searchMovies(moviesDb.movies as Movie[], searchStr);
 
     this.sortMovies(movies, sortBy);
 
     let result = this.getPage(movies, page, this.pageSize);
 
-    return Promise.resolve({
-      total: movies.length,
-      dataItems: result
-    });
+    return Promise.resolve(result as Movie[]);
   }
 
-  sortMovies(movies, sortBy) {
+  sortMovies(movies: Movie[], sortBy: string) {
     if (sortBy === 'title') {
       movies.sort((x, y) => x.title.localeCompare(y.title));
     }
@@ -40,7 +38,7 @@ export class MoviesService {
     }
   }
 
-  searchMovies(movies, searchStr) {
+  searchMovies(movies: Movie[], searchStr: string) {
     if (!searchStr) return movies;
 
     let textSearchFields = ['title', 'year', 'actors', 'director', 'plot'];
@@ -58,18 +56,18 @@ export class MoviesService {
     });
   }
 
-  containsString(obj, searchStr) {
+  containsString(obj: string, searchStr: string) {
     return obj.toString().toLowerCase().indexOf(searchStr.toLowerCase()) !== -1
   }
 
-  getPage(movies, page, perPage) {
+  getPage(movies: Movie[], page: number, perPage: number) {
     var start = (page - 1) * perPage;
     var end = page * perPage;
     return movies.slice(start, end);
   }
 
   deleteMovie(id) {
-    let movies = moviesData.movies;
+    let movies = moviesDb.movies;
 
     for (let i = 0; i < movies.length; i++) {
       if (movies[i].id === id) {
@@ -80,14 +78,14 @@ export class MoviesService {
     return Promise.resolve(null);
   }
 
-  saveMovie(movie) {
+  saveMovie(movie: Movie) {
     if (movie.id) return this.updateMovie(movie);
 
     return this.addMovie(movie);
   }
 
-  updateMovie(movie) {
-    let movies = moviesData.movies;
+  updateMovie(movie: Movie) {
+    let movies = moviesDb.movies;
 
     for (let i = 0; i < movies.length; i++) {
       if (movies[i].id === movie.id) {
@@ -98,8 +96,8 @@ export class MoviesService {
     return Promise.resolve(null);
   }
 
-  addMovie(movie) {
-    let movies = moviesData.movies;
+  addMovie(movie: Movie) {
+    let movies = moviesDb.movies;
 
     let maxId = 0;
 
@@ -117,6 +115,6 @@ export class MoviesService {
   }
 
   getGenres() {
-    return Promise.resolve(moviesData.genres);
+    return Promise.resolve(moviesDb.genres as string[]);
   }
 }

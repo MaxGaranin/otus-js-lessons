@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
 import {Subject} from "rxjs/index";
+import {Movie} from "../entities/movie";
 
 @Component({
   selector: 'app-movie-card',
@@ -8,7 +9,7 @@ import {Subject} from "rxjs/index";
   styleUrls: ['./movie-card.component.css'],
 })
 export class MovieCardComponent implements OnInit {
-  public movie: any;
+  public movie: Movie;
   public dialogResult: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef) {

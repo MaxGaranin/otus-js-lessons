@@ -3,6 +3,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {MoviesService} from "../movies.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {MovieCardComponent} from "../movie-card/movie-card.component";
+import {Movie} from "../entities/movie";
 
 @Component({
   selector: 'app-movies-list',
@@ -16,7 +17,7 @@ export class MoviesListComponent implements OnInit {
     private modalService: BsModalService) {
   }
 
-  movies: any[];
+  movies: Movie[];
   activePage: number = 1;
   sortBy: string = 'title';
   searchStr: string = '';
@@ -29,7 +30,7 @@ export class MoviesListComponent implements OnInit {
   loadMovies() {
     this._moviesService.getMovies(this.activePage, this.sortBy, this.searchStr)
       .then(result => {
-        this.movies = result.dataItems;
+        this.movies = result;
       });
   }
 
@@ -42,16 +43,15 @@ export class MoviesListComponent implements OnInit {
   }
 
   addMovie() {
-    let newMovie = {
-      Id: -1,
-      Title: '',
-      Year: 2018,
-      Runtime: 0,
-      Genres: [],
-      Director: '',
-      Actors: [],
-      Comment: ''
-    };
+    let newMovie = new Movie();
+    newMovie.title = '';
+    newMovie.year = 2018;
+    newMovie.runtime = 120;
+    newMovie.genres = [];
+    newMovie.director = '';
+    newMovie.actors = [];
+    newMovie.plot = '';
+    newMovie.posterUrl = '';
 
     let initialState = {
       movie: newMovie
