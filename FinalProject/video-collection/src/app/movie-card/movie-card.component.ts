@@ -8,8 +8,7 @@ import {Subject} from "rxjs/index";
   styleUrls: ['./movie-card.component.css'],
 })
 export class MovieCardComponent implements OnInit {
-
-  movie: any;
+  public movie: any;
   public dialogResult: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef) {

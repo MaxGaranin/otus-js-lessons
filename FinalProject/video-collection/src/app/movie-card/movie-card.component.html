@@ -1,40 +1,43 @@
-<div>
-  <label>Название</label>
-  <input [(ngModel)]="movie.Title" />
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Фильм</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
-<div>
-  <label>Год выпуска</label>
-  <input type="text" [value]="movie.Year" />
+<div class="modal-body container">
+  <div class="row">
+    <label class="col">Название</label>
+    <input class="col" [(ngModel)]="movie.title"/>
+  </div>
+  <div class="row">
+    <label class="col">Год выпуска</label>
+    <input class="col" type="text" [value]="movie.year"/>
+  </div>
+  <div class="row">
+    <label class="col">Продолжительность, мин</label>
+    <input class="col" type="text" [value]="movie.runtime"/>
+  </div>
+  <div class="row">
+    <label class="col">Жанры</label>
+    <select class="col" multiple></select>
+  </div>
+  <div class="row">
+    <label class="col">Режиссер</label>
+    <input class="col" type="text" [value]="movie.director"/>
+  </div>
+  <div class="row">
+    <label class="col">Актеры</label>
+    <select class="col" multiple></select>
+  </div>
+  <div class="row">
+    <label class="col">Краткое описание</label>
+    <textarea class="col" [value]="movie.plot"></textarea>
+  </div>
 </div>
 
-<div>
-  <label>Продолжительность, мин</label>
-  <input type="text" [value]="movie.Runtime"/>
-</div>
-
-<div>
-  <label>Жанры</label>
-  <select multiple></select>
-</div>
-
-<div>
-  <label>Режиссер</label>
-  <input type="text" [value]="movie.Director"/>
-</div>
-
-<div>
-  <label>Актеры</label>
-  <select multiple></select>
-</div>
-
-<div>
-  <label>Краткое описание</label>
-  <textarea [value]="movie.Comment"></textarea>
-</div>
-
-<div>
-  <button class="btn btn-primary" (click)="Ok()">ОК</button>
-  <button class="btn btn-secondary" (click)="Cancel()">Отмена</button>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="Ok()">ОК</button>
+  <button class="btn btn-outline-secondary" (click)="Cancel()">Отмена</button>
 </div>
 

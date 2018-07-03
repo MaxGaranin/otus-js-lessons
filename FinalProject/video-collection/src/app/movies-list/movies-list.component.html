@@ -1,15 +1,32 @@
 <div>
-  <div>
+  <div class="container">
     <ul>
       <li *ngFor="let movie of movies">
-        {{movie.id}}&nbsp;-&nbsp;{{movie.title}}
-        <button (click)="deleteMovie(movie.id)">Удалить</button>
-        <button class="btn" (click)="editMovie(movie)">Редактировать</button>
+        <div class="row">
+          <div class="col-lg-4">
+            {{movie.id}}&nbsp;-&nbsp;{{movie.title}}
+          </div>
+          <div class="col-lg-2">
+            <button class="btn btn-outline-danger"
+                    (click)="deleteMovie(movie.id)">
+              Удалить
+            </button>
+          </div>
+          <div class="col-lg-2">
+            <button class="btn btn-outline-secondary"
+                    (click)="editMovie(movie)">
+              Редактировать
+            </button>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
   <div>
-    <button class="btn btn-primary" (click)="addMovie()">Добавить</button>
+    <button class="btn btn-outline-primary"
+            (click)="addMovie()">
+      Добавить
+    </button>
   </div>
 </div>
 
