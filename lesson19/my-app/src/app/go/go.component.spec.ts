@@ -8,6 +8,7 @@ import {
   MatDialogModule,
 } from '@angular/material';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { GoComponent } from './go.component';
 
 describe('GoComponent', () => {
@@ -29,6 +30,9 @@ describe('GoComponent', () => {
         MatGridListModule,
         MatDialogModule,
       ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     })
     .compileComponents();
   }));

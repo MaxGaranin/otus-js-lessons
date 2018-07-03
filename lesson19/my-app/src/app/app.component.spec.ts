@@ -5,9 +5,9 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatGridListModule,
-  MatDialogModule
 } from '@angular/material';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AddNewComponent } from './add-new/add-new.component';
 import { GoComponent } from './go/go.component';
@@ -63,4 +63,5 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Learn English');
   }));
+
 });

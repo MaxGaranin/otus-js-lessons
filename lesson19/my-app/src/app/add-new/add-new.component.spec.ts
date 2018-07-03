@@ -16,23 +16,23 @@ import {TranslatorService} from "../translator.service";
 describe('AddNewComponent', () => {
   let component: AddNewComponent;
   let fixture: ComponentFixture<AddNewComponent>;
-  let translatorServiceStub = {
-    translate: (text: string) => {
-      if (text == 'hello') {
-        return 'привет';
+
+  const translatorServiceStub = {
+    translate: function (text: string) {
+      if (text === 'hello') {
+        return Promise.resolve('привет');
       }
-      if (text == 'world') {
-        return 'мир';
+      else if (text === 'world') {
+        return Promise.resolve('мир');
       }
       else {
-        return null;
+        return Promise.resolve(null);
       }
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
       declarations: [ AddNewComponent ]
       providers: [
         { provide: MatDialog, useValue: {} },
@@ -61,10 +61,10 @@ describe('AddNewComponent', () => {
   });
 
   it('should translate', () => {
-    var result = component.translate('hello');
-    expect(component.translateData.translation).toBe('привет');
+    component.translate('hello')
+      .then((result) => expect(result).toBe('привет'));
 
-    var result = component.translate('world');
-    expect(component.translateData.translation).toBe('мир');
+    component.translate('world')
+      .then((result) => expect(result).toBe('мир'));
   });
 });
