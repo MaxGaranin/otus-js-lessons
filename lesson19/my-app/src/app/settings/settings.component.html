@@ -1,20 +1,21 @@
 <div>
   <p>
-    <span>Language:</span>
     <mat-form-field>
-      <mat-select>
-        <mat-option selected>English</mat-option>
-        <mat-option>Russian</mat-option>
+      <mat-select placeholder="Language" [(value)]="selectedLanguage">
+        <mat-option *ngFor="let lg of languages" [value]="lg.value">
+          {{lg.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </p>
   <p>
-    <span>Number of words:</span>
-    <select mat-select>
-      <option mat-option>10</option>
-      <option mat-option>20</option>
-      <option mat-option>5</option>
-    </select>
+    <mat-form-field>
+      <mat-select placeholder="Number of words" [(value)]="selectedNumber">
+        <mat-option value="5">5</mat-option>
+        <mat-option value="10">10</mat-option>
+        <mat-option value="20">20</mat-option>
+      </mat-select>
+    </mat-form-field>
   </p>
   <div>
     <button mat-button>Back</button>
