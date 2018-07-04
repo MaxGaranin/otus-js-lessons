@@ -9,7 +9,7 @@ var moviesDb = require('./../db/db.json');
 })
 export class MoviesService {
 
-  pageSize = 10;
+  pageSize = 20;
 
   constructor() {
   }
@@ -19,9 +19,12 @@ export class MoviesService {
 
     this.sortMovies(movies, sortBy);
 
-    let result = this.getPage(movies, page, this.pageSize);
+    let pagedMovies = this.getPage(movies, page, this.pageSize);
 
-    return Promise.resolve(result as Movie[]);
+    return Promise.resolve({
+      movies: pagedMovies as Movie[],
+      moviesCount: movies.length
+    });
   }
 
   sortMovies(movies: Movie[], sortBy: string) {

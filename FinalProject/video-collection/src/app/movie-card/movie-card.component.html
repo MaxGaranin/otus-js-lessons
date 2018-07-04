@@ -12,11 +12,11 @@
   </div>
   <div class="row">
     <label class="col">Год выпуска</label>
-    <input class="col" type="text" [value]="movie.year"/>
+    <input class="col" type="text" [(ngModel)]="movie.year"/>
   </div>
   <div class="row">
     <label class="col">Продолжительность, мин</label>
-    <input class="col" type="text" [value]="movie.runtime"/>
+    <input class="col" type="text" [(ngModel)]="movie.runtime"/>
   </div>
   <div class="row">
     <label class="col">Жанры</label>
@@ -24,7 +24,7 @@
   </div>
   <div class="row">
     <label class="col">Режиссер</label>
-    <input class="col" type="text" [value]="movie.director"/>
+    <input class="col" type="text" [(ngModel)]="movie.director"/>
   </div>
   <div class="row">
     <label class="col">Актеры</label>
@@ -32,7 +32,7 @@
   </div>
   <div class="row">
     <label class="col">Краткое описание</label>
-    <textarea class="col" [value]="movie.plot"></textarea>
+    <textarea class="col" [(ngModel)]="movie.plot"></textarea>
   </div>
   <div class="row">
     <label class="col">Постер</label>

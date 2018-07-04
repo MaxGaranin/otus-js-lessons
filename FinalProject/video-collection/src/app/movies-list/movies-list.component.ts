@@ -1,5 +1,4 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {ModalModule} from 'ngx-bootstrap/modal';
 import {MoviesService} from "../movies.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {MovieCardComponent} from "../movie-card/movie-card.component";
@@ -18,6 +17,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   movies: Movie[];
+  moviesCount: number;
   activePage: number = 1;
   sortBy: string = 'title';
   searchStr: string = '';
@@ -30,7 +30,9 @@ export class MoviesListComponent implements OnInit {
   loadMovies() {
     this._moviesService.getMovies(this.activePage, this.sortBy, this.searchStr)
       .then(result => {
-        this.movies = result;
+        this.movies = result.movies;
+        this.moviesCount = result.moviesCount;
+        console.log("Movies count: ", this.moviesCount);
       });
   }
 
@@ -59,7 +61,11 @@ export class MoviesListComponent implements OnInit {
 
     this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
     this.modalRef.content.dialogResult.subscribe(result => {
-      console.log('results', result);
+      console.log('results: ', result);
+      if (result) {
+        this._moviesService.saveMovie(this.modalRef.content.movie)
+          .then(() => this.loadMovies());
+      }
     });
   }
 
@@ -72,8 +78,18 @@ export class MoviesListComponent implements OnInit {
 
     this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
     this.modalRef.content.dialogResult.subscribe(result => {
-      console.log('results', result);
+      console.log('results: ', result);
+      if (result) {
+        this._moviesService.saveMovie(this.modalRef.content.movie)
+          .then(() => this.loadMovies());;
+      }
     });
+  }
+
+  onPageChanged(event: any) {
+    console.log(event.page);
+    this.activePage = event.page;
+    this.loadMovies();
   }
 
 }
