@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {MoviesListComponent} from './movies-list/movies-list.component';
 import {MovieCardComponent} from './movie-card/movie-card.component';
 import {MoviesService} from './movies.service';
-import {ModalModule, PaginationModule, PaginationConfig} from "ngx-bootstrap";
+import {ModalModule, PaginationModule, BsDropdownModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -21,11 +21,11 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     FormsModule,
     ModalModule.forRoot(),
-    PaginationModule,
+    PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
   providers: [
     MoviesService,
-    PaginationConfig
   ],
   bootstrap: [AppComponent]
 })

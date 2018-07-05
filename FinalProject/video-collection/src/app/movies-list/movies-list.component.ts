@@ -1,8 +1,8 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
-import {MoviesService} from "../movies.service";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {MovieCardComponent} from "../movie-card/movie-card.component";
-import {Movie} from "../entities/movie";
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { MoviesService } from "../movies.service";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { MovieCardComponent } from "../movie-card/movie-card.component";
+import { Movie } from "../entities/movie";
 
 @Component({
   selector: 'app-movies-list',
@@ -13,22 +13,27 @@ export class MoviesListComponent implements OnInit {
 
   constructor(
     private _moviesService: MoviesService,
-    private modalService: BsModalService) {
-  }
+    private modalService: BsModalService) { }
 
   movies: Movie[];
   moviesCount: number;
   activePage: number = 1;
-  sortBy: string = 'title';
+  sortOrder: string = 'title';
   searchStr: string = '';
   modalRef: BsModalRef;
+
+  sortOrders = [
+    { key: 'title', text: 'Название' },
+    { key: 'year', text: 'Год' },
+    { key: 'runtime', text: 'Продолжительность' },
+  ];
 
   ngOnInit() {
     this.loadMovies();
   }
 
   loadMovies() {
-    this._moviesService.getMovies(this.activePage, this.sortBy, this.searchStr)
+    this._moviesService.getMovies(this.activePage, this.sortOrder, this.searchStr)
       .then(result => {
         this.movies = result.movies;
         this.moviesCount = result.moviesCount;
@@ -59,9 +64,8 @@ export class MoviesListComponent implements OnInit {
       movie: newMovie
     };
 
-    this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
+    this.modalRef = this.modalService.show(MovieCardComponent, { initialState });
     this.modalRef.content.dialogResult.subscribe(result => {
-      console.log('results: ', result);
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
           .then(() => this.loadMovies());
@@ -69,16 +73,15 @@ export class MoviesListComponent implements OnInit {
     });
   }
 
-  editMovie(movie: any) {
+  editMovie(movie: Movie) {
     let movieToEdit = Object.assign({}, movie);
 
     let initialState = {
       movie: movieToEdit
     };
 
-    this.modalRef = this.modalService.show(MovieCardComponent, {initialState});
+    this.modalRef = this.modalService.show(MovieCardComponent, { initialState });
     this.modalRef.content.dialogResult.subscribe(result => {
-      console.log('results: ', result);
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
           .then(() => this.loadMovies());;
@@ -86,8 +89,19 @@ export class MoviesListComponent implements OnInit {
     });
   }
 
+  sortBy(sortOrder: string) {
+    console.log(sortOrder);
+
+    this.sortOrder = sortOrder;
+    this.activePage = 1;
+    this.loadMovies();
+  }
+
+  onSelectChanged(value: string) {
+    console.log(value);
+  }
+
   onPageChanged(event: any) {
-    console.log(event.page);
     this.activePage = event.page;
     this.loadMovies();
   }

@@ -1,10 +1,39 @@
 <div>
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-12">
-        <pagination [totalItems]="moviesCount" [(ngModel)]="activePage" (pageChanged)="onPageChanged($event)" 
-          [maxSize]="5" [boundaryLinks]="false"
-          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+      <!-- <div class="col-lg-6">
+        <div class="btn-group" dropdown>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-info dropdown-toggle" aria-controls="dropdown-basic">
+            Сортировать по
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li *ngFor="let sortOrder of sortOrders" role="menuitem">
+              <a class="dropdown-item" href="#" (click)="sortBy(sortOrder.key)">
+                {{sortOrder.text}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+
+      <div class="col-lg-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="sortSelect">Сортировать по</label>
+          </div>
+          <select id="sortSelect" (change)="sortBy($event.target.value)" [value]="sortOrder">
+            <option *ngFor="let so of sortOrders" [value]="so.key">
+              {{so.text}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <pagination [totalItems]="moviesCount" [(ngModel)]="activePage" (pageChanged)="onPageChanged($event)" [maxSize]="5" [boundaryLinks]="false"
+          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
       </div>
     </div>
   </div>
