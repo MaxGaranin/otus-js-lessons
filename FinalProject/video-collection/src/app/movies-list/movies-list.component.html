@@ -1,23 +1,8 @@
 <div>
   <div class="container">
-    <div class="row">
-      <!-- <div class="col-lg-6">
-        <div class="btn-group" dropdown>
-          <button id="button-basic" dropdownToggle type="button" class="btn btn-outline-info dropdown-toggle" aria-controls="dropdown-basic">
-            Сортировать по
-            <span class="caret"></span>
-          </button>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li *ngFor="let sortOrder of sortOrders" role="menuitem">
-              <a class="dropdown-item" href="#" (click)="sortBy(sortOrder.key)">
-                {{sortOrder.text}}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-
-      <div class="col-lg-6">
+    <div class="row m-3">
+      <!-- Сортировка -->
+      <div class="col-lg-4">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="sortSelect">Сортировать по</label>
@@ -30,7 +15,14 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
+      <!-- Поиск -->
+      <div class="col-lg-4 text-left">
+        <input type='text' #searchInput (change)="search($event.target.value)"/>
+        <button class="btn btn-outline-info ml-1" (click)="search(searchInput.value)">Найти</button>
+      </div>
+
+      <!-- Постраничный просмотр -->
+      <div class="col-lg-4">
         <pagination [totalItems]="moviesCount" [(ngModel)]="activePage" (pageChanged)="onPageChanged($event)" [maxSize]="5" [boundaryLinks]="false"
           previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>

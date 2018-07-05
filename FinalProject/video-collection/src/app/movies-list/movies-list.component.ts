@@ -90,15 +90,14 @@ export class MoviesListComponent implements OnInit {
   }
 
   sortBy(sortOrder: string) {
-    console.log(sortOrder);
-
     this.sortOrder = sortOrder;
     this.activePage = 1;
     this.loadMovies();
   }
 
-  onSelectChanged(value: string) {
-    console.log(value);
+  search(searchStr: string) {
+    this.searchStr = searchStr;
+    this.loadMovies();
   }
 
   onPageChanged(event: any) {
