@@ -1,7 +1,17 @@
 <div>
-  <p>to apply</p>
   <p>
-    <input type="text" width="100">
+    <label>This is a current word:&nbsp;&nbsp;</label>
+    <span>{{currentWord}}</span>
   </p>
-  <button mat-button="">Next</button>
+  <p>
+    <label>Type your translation:&nbsp;&nbsp;</label>
+    <input type="text" [(ngModel)]="currentTranslation" (change)="checkTranslation()">
+  </p>
+  <p>
+    Guessed words: {{matchedCount}} of {{processedCount}}
+  </p>
+  <p>
+    <button mat-raised-button (click)="checkTranslation()">Next</button>
+    <button mat-raised-button (click)="reset()">Reset</button>
+  </p>
 </div>
