@@ -1,5 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatGridListModule,
+  MatDialogModule,
+} from '@angular/material';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SettingsComponent } from './settings.component';
 
 describe('SettingsComponent', () => {
@@ -8,9 +18,25 @@ describe('SettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [
+        SettingsComponent
+      ],
+      providers: [
+      ],
+      imports: [
+        FormsModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatGridListModule,
+        MatDialogModule,
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

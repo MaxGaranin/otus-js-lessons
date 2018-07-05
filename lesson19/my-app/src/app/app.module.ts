@@ -20,7 +20,7 @@ import {AddNewComponent} from './add-new/add-new.component';
 import {TranslatorService} from "./translator.service";
 import {PageNotFoundComponent} from "./not-found-component";
 import {AppRoutingModule} from "./app-routing.module";
-import {KeysPipe} from "./recently-added/utils";
+import { PipeModule } from './pipe.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import {KeysPipe} from "./recently-added/utils";
     GoComponent,
     AddNewComponent,
     PageNotFoundComponent,
-    KeysPipe
   ],
   entryComponents: [
     AddNewComponent
@@ -44,7 +43,8 @@ import {KeysPipe} from "./recently-added/utils";
     MatSelectModule,
     MatOptionModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    PipeModule,
   ],
   providers: [
     TranslatorService,
