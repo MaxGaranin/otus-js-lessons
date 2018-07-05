@@ -48,6 +48,8 @@ import { PipeModule } from './pipe.module';
   ],
   providers: [
     TranslatorService,
+    WordService,
+    DataStoreService,
     MatDialog,
     { provide: MAT_DIALOG_DATA, useValue: {} },
   ],
