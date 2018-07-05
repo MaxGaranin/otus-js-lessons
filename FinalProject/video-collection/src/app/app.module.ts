@@ -1,18 +1,21 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {MoviesListComponent} from './movies-list/movies-list.component';
-import {MovieCardComponent} from './movie-card/movie-card.component';
-import {MoviesService} from './movies.service';
-import {ModalModule, PaginationModule, BsDropdownModule} from "ngx-bootstrap";
-import {FormsModule} from "@angular/forms";
+import { AppComponent } from './app.component';
+import { MoviesListComponent } from './movies-list/movies-list.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MoviesService } from './movies.service';
+import { ModalModule, PaginationModule, BsDropdownModule } from "ngx-bootstrap";
+import { FormsModule } from "@angular/forms";
+import { PageNotFoundComponent } from './not-found.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesListComponent,
     MovieCardComponent,
+    PageNotFoundComponent,
   ],
   entryComponents: [
     MovieCardComponent,
@@ -20,6 +23,7 @@ import {FormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
