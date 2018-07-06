@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row mt-3">
       <!-- Сортировка -->
-      <div class="col-sm-4">
+      <div class="col-4">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="sortSelect">Сортировать по</label>
@@ -16,24 +16,20 @@
       </div>
 
       <!-- Поиск -->
-      <div class="col-sm-4 text-left">
+      <div class="col-3 text-left">
         <input type='text' #searchInput (change)="search($event.target.value)" />
         <button class="btn btn-outline-info ml-1" (click)="search(searchInput.value)">Найти</button>
       </div>
 
       <!-- Постраничный просмотр -->
-      <div class="col-sm-4">
+      <div class="col-3">
         <pagination [totalItems]="moviesCount" [(ngModel)]="activePage" (pageChanged)="onPageChanged($event)" [maxSize]="5" [boundaryLinks]="false"
           previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>
       </div>
-    </div>
-  </div>
 
-  <div class="container">
-    <div class="row justify-content-end">
       <!-- Кнопка добавления нового фильма -->
-      <div class="col-sm-3">
+      <div class="col-2">
         <button class="btn btn-outline-primary" (click)="addMovie()">
           Добавить
         </button>
