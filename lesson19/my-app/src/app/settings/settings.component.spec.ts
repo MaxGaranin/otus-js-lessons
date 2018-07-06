@@ -9,7 +9,6 @@ import {
   MatDialogModule,
 } from '@angular/material';
 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SettingsComponent } from './settings.component';
 
 describe('SettingsComponent', () => {
