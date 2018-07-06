@@ -11,7 +11,6 @@ import {
 } from '@angular/material';
 
 import { AddNewComponent } from './add-new.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AddNewComponent', () => {
   let component: AddNewComponent;
@@ -34,9 +33,6 @@ describe('AddNewComponent', () => {
         MatGridListModule,
         MatDialogModule,
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
     })
       .compileComponents();
   }));

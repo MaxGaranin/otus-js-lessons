@@ -8,9 +8,8 @@ import {
   MatDialogModule,
 } from '@angular/material';
 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RecentlyAddedComponent } from './recently-added.component';
-import { WordService } from './../word.service';
+import { WordService } from '../word.service';
 import { PipeModule } from '../pipe.module';
 
 describe('RecentlyAddedComponent', () => {
@@ -34,9 +33,6 @@ describe('RecentlyAddedComponent', () => {
         MatDialogModule,
         PipeModule,
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
     })
       .compileComponents();
   }));

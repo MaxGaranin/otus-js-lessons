@@ -8,16 +8,29 @@ import {
   MatDialogModule
 } from '@angular/material';
 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AddNewComponent } from './add-new/add-new.component';
+import { GoComponent } from './go/go.component';
+import { RecentlyAddedComponent } from './recently-added/recently-added.component';
+import { SettingsComponent } from './settings/settings.component';
+import { PageNotFoundComponent } from './not-found.component';
+import { APP_BASE_HREF } from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
+import { PipeModule } from './pipe.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        AddNewComponent,
+        GoComponent,
+        RecentlyAddedComponent,
+        SettingsComponent,
+        PageNotFoundComponent
       ],
       providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
       ],
       imports: [
         FormsModule,
@@ -26,10 +39,9 @@ describe('AppComponent', () => {
         MatOptionModule,
         MatGridListModule,
         MatDialogModule,
+        AppRoutingModule,
+        PipeModule
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
     }).compileComponents();
   }));
 

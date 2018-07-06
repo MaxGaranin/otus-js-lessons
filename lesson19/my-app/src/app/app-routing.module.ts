@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {GoComponent} from './go/go.component';
 import {RecentlyAddedComponent} from './recently-added/recently-added.component';
 import {SettingsComponent} from './settings/settings.component';
-import {PageNotFoundComponent} from "./not-found-component";
+import {PageNotFoundComponent} from "./not-found.component";
 
 const appRoutes: Routes = [
   {
