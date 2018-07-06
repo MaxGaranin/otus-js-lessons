@@ -16,6 +16,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.movie = new Movie();
     this.dialogResult = new Subject<boolean>();
   }
 

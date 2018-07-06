@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../movies.service";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieCardComponent } from "../movie-card/movie-card.component";
