@@ -40,16 +40,27 @@
   <div class="container">
     <ul>
       <li *ngFor="let movie of movies">
-        <div class="row">
-          <div class="col-sm-4">
-            {{movie.id}}&nbsp;-&nbsp;{{movie.title}}
+        <div class="row mt-3">
+          
+          <div class="col-10" container>
+            <div class="row">
+              <div class="col-1">
+                <img width="75" height="100" [src]="movie.posterUrl">
+              </div>
+              <div class="col-10">
+                <div><a (click)="editMovie(movie)">{{movie.title}}</a></div>
+                <div>{{movie.year}}  {{movie.runtime}}мин</div>
+                <div>{{movie.plot}}</div>
+              </div>
+            </div>
           </div>
-          <div class="col-sm-2">
+
+          <div class="col-1">
             <button class="btn btn-outline-danger" (click)="deleteMovie(movie.id)">
               Удалить
             </button>
           </div>
-          <div class="col-sm-2">
+          <div class="col-1">
             <button class="btn btn-outline-secondary" (click)="editMovie(movie)">
               Редактировать
             </button>

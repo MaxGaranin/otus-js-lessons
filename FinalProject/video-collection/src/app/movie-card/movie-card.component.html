@@ -8,35 +8,42 @@
 <div class="modal-body container">
   <div class="row">
     <label class="col">Название</label>
-    <input class="col" [(ngModel)]="movie.title"/>
+    <input class="col" [(ngModel)]="movie.title" />
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Год выпуска</label>
-    <input class="col" type="text" [(ngModel)]="movie.year"/>
+    <input class="col" type="text" [(ngModel)]="movie.year" />
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Продолжительность, мин</label>
-    <input class="col" type="text" [(ngModel)]="movie.runtime"/>
+    <input class="col" type="text" [(ngModel)]="movie.runtime" />
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Жанры</label>
     <select class="col" multiple></select>
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Режиссер</label>
-    <input class="col" type="text" [(ngModel)]="movie.director"/>
+    <input class="col" type="text" [(ngModel)]="movie.director" />
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Актеры</label>
     <select class="col" multiple></select>
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Краткое описание</label>
     <textarea class="col" [(ngModel)]="movie.plot"></textarea>
   </div>
-  <div class="row">
+  <div class="row mt-1">
     <label class="col">Постер</label>
-    <img class="col" [src]="movie.posterUrl"/>
+    <div class="col content">
+      <div class=".circ">
+        <input type="text" [(ngModel)]="movie.posterUrl"/>
+      </div>
+      <div class="poster-img-wrap">
+        <img [src]="movie.posterUrl" [alt]="movie.title" />
+      </div>
+    </div>
   </div>
 </div>
 
@@ -44,4 +51,3 @@
   <button class="btn btn-outline-primary" (click)="Ok()">ОК</button>
   <button class="btn btn-outline-secondary" (click)="Cancel()">Отмена</button>
 </div>
-

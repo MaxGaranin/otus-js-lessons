@@ -9,6 +9,7 @@ import { ModalModule, PaginationModule, BsDropdownModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 import { PageNotFoundComponent } from './not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     MoviesService,
