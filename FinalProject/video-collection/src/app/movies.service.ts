@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Movie} from "./entities/movie";
+import { Injectable } from '@angular/core';
+import { Movie } from "./entities/movie";
 
 declare var require: any;
 var moviesDb = require('./../db/db.json');
@@ -119,5 +119,14 @@ export class MoviesService {
 
   getGenres() {
     return Promise.resolve(moviesDb.genres as string[]);
+  }
+
+  getDirectors() {
+    let directors = [] as string[];
+    let movies = moviesDb.movies as Movie[];
+    movies.forEach(movie => {
+      directors.push(movie.director);
+    });
+    return Promise.resolve(directors);
   }
 }
