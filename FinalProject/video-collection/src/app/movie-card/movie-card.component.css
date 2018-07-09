@@ -6,8 +6,8 @@
     overflow: hidden;
     margin: 0;
   }
-  
-  div > img {
+
+  div>img {
     display: block;
     position: absolute;
     top: 50%;
@@ -20,3 +20,4 @@
   textarea {
     height: 150px;
   }
+  

@@ -18,10 +18,33 @@
     <label class="col">Продолжительность, мин</label>
     <input class="col" type="text" [(ngModel)]="movie.runtime" />
   </div>
-  <div class="row mt-1">
-    <label class="col">Жанры</label>
-    <select class="col" multiple></select>
+
+  <div class="row mt-1 input-group">
+    <!-- <label class="col">Жанры</label>
+        <select class="col" multiple></select> -->
+
+    <div class="input-group-prepend col">
+      Жанры
+    </div>
+    <div class="col genres-select">
+      <ng-select 
+        [items]="genres" 
+        [multiple]="true"
+        [closeOnSelect]="false" 
+        bindLabel="name" 
+        [(ngModel)]="movie.genres">
+      </ng-select>
+
+      <!-- <select class="custom-select" id="inputGroupSelect03" multiple>
+        <option selected>Choose...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select> -->
+    </div>
+
   </div>
+
   <div class="row mt-1">
     <label class="col">Режиссер</label>
     <input class="col" type="text" [(ngModel)]="movie.director" />
@@ -37,8 +60,8 @@
   <div class="row mt-1">
     <label class="col">Постер</label>
     <div class="col content">
-      <div class=".circ">
-        <input type="text" [(ngModel)]="movie.posterUrl"/>
+      <div>
+        <input type="text" [(ngModel)]="movie.posterUrl" />
       </div>
       <div class="poster-img-wrap">
         <img [src]="movie.posterUrl" [alt]="movie.title" />

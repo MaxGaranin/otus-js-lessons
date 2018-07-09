@@ -1,3 +1,7 @@
 li {
   list-style-type: none; /* Убираем маркеры */
 }
+
+a {
+  cursor: pointer;
+}

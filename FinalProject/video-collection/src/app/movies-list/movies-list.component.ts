@@ -17,6 +17,7 @@ export class MoviesListComponent implements OnInit {
 
   movies: Movie[];
   moviesCount: number;
+  genres: string[];
   activePage: number = 1;
   sortOrder: string = 'title';
   searchStr: string = '';
@@ -29,6 +30,7 @@ export class MoviesListComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.loadGenres();
     this.loadMovies();
   }
 
@@ -37,7 +39,13 @@ export class MoviesListComponent implements OnInit {
       .then(result => {
         this.movies = result.movies;
         this.moviesCount = result.moviesCount;
-        console.log("Movies count: ", this.moviesCount);
+      });
+  }
+
+  loadGenres() {
+    this._moviesService.getGenres()
+      .then(result => {
+        this.genres = result;
       });
   }
 
@@ -77,7 +85,8 @@ export class MoviesListComponent implements OnInit {
     let movieToEdit = Object.assign({}, movie);
 
     let initialState = {
-      movie: movieToEdit
+      movie: movieToEdit,
+      genres: this.genres
     };
 
     this.modalRef = this.modalService.show(MovieCardComponent, { initialState });

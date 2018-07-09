@@ -23,6 +23,7 @@
     "@fortawesome/angular-fontawesome": "^0.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.1.0",
+    "@ng-select/ng-select": "^2.3.2",
     "core-js": "^2.5.4",
     "karma-yandex-launcher": "^0.1.8",
     "ngx-bootstrap": "^3.0.1",

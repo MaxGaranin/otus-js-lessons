@@ -10,6 +10,7 @@ import { FormsModule } from "@angular/forms";
 import { PageNotFoundComponent } from './not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule,
   ],
   providers: [
     MoviesService,
