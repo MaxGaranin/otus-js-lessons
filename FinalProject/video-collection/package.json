@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "karma-yandex-launcher": "^0.1.8",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-toastr": "^8.8.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

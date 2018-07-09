@@ -3,6 +3,9 @@ import { MoviesService } from "../movies.service";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieCardComponent } from "../movie-card/movie-card.component";
 import { Movie } from "../entities/movie";
+import { ToastrService } from '../../../node_modules/ngx-toastr';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { Subject } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-movies-list',
@@ -13,7 +16,8 @@ export class MoviesListComponent implements OnInit {
 
   constructor(
     private _moviesService: MoviesService,
-    private modalService: BsModalService) { }
+    private _modalService: BsModalService,
+    private _toastrService: ToastrService) { }
 
   movies: Movie[];
   moviesCount: number;
@@ -50,11 +54,15 @@ export class MoviesListComponent implements OnInit {
   }
 
   deleteMovie(movieId: number) {
-    console.log(movieId);
-    this._moviesService.deleteMovie(movieId)
-      .then(() => {
-        this.loadMovies();
-      });
+    this.showConfirmationModal("Внимание", "Удалить фильм?").subscribe(result => {
+      if (result === true) {
+        this._moviesService.deleteMovie(movieId)
+          .then(() => {
+            this._toastrService.success("Фильм удален!");
+            this.loadMovies();
+          });
+      }
+    });
   }
 
   addMovie() {
@@ -72,7 +80,7 @@ export class MoviesListComponent implements OnInit {
       movie: newMovie
     };
 
-    this.modalRef = this.modalService.show(MovieCardComponent, { initialState });
+    this.modalRef = this._modalService.show(MovieCardComponent, { initialState });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
@@ -89,7 +97,7 @@ export class MoviesListComponent implements OnInit {
       genres: this.genres
     };
 
-    this.modalRef = this.modalService.show(MovieCardComponent, { initialState });
+    this.modalRef = this._modalService.show(MovieCardComponent, { initialState });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
@@ -114,4 +122,11 @@ export class MoviesListComponent implements OnInit {
     this.loadMovies();
   }
 
+  showConfirmationModal(title: string, message: string): Subject<boolean> {
+    const modal = this._modalService.show(ConfirmationModalComponent);
+
+    (<ConfirmationModalComponent>modal.content).showConfirmationModal(title, message);
+
+    return (<ConfirmationModalComponent>modal.content).onClose;
+  }
 }

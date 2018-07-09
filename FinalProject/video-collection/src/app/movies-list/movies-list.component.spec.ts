@@ -5,6 +5,7 @@ import { MoviesService } from "../movies.service";
 import { BsModalRef, BsModalService, ModalModule, PaginationModule } from "ngx-bootstrap";
 import { FormsModule } from '../../../node_modules/@angular/forms';
 import { BrowserModule } from '../../../node_modules/@angular/platform-browser';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('MoviesListComponent', () => {
   let component: MoviesListComponent;
@@ -19,12 +20,14 @@ describe('MoviesListComponent', () => {
         { provide: BsModalRef, useValue: {} },
         BsModalService,
         MoviesService,
+        ToastrService,
       ],
       imports: [
         BrowserModule,
         FormsModule,
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
+        ToastrModule.forRoot(),
       ]      
     })
     .compileComponents();

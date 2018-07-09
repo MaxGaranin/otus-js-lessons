@@ -7,6 +7,9 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { ModalModule, PaginationModule, BsDropdownModule } from "ngx-bootstrap";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -26,7 +29,10 @@ describe('AppComponent', () => {
         AppRoutingModule,
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
-        BsDropdownModule.forRoot(),        
+        BsDropdownModule.forRoot(),    
+        FontAwesomeModule,
+        NgSelectModule,
+        ToastrModule.forRoot(),            
       ]
     }).compileComponents();
   }));
