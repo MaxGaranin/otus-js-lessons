@@ -5,7 +5,7 @@ export class Movie {
   runtime: number;
   genres: string[];
   director: string;
-  actors: string[];
+  actors: string;
   plot: string;
   posterUrl: string;
 }

@@ -43,13 +43,7 @@
   <div class="row mt-1">
     <label class="col">Актеры</label>
     <div class="col">
-      <ng-select 
-        [items]="actors"
-        [multiple]="true"
-        [closeOnSelect]="false" 
-        bindLabel="name" 
-        [(ngModel)]="movie.actors">
-      </ng-select>
+      <input type="text" class="card-input" [(ngModel)]="movie.actors"/>
     </div>
   </div>
   <div class="row mt-1">

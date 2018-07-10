@@ -5,3 +5,13 @@ li {
 a {
   cursor: pointer;
 }
+
+.title button {
+  float: right;
+  margin-left: 5px;
+}
+
+.button-add {
+  float: right;
+  margin-left: 5px;
+}

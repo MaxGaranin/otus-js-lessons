@@ -1,5 +1,5 @@
 <div>
-  <div class="container">
+  <div class="container filter-panel">
     <div class="row mt-3">
 
       <!-- Сортировка -->
@@ -31,7 +31,7 @@
 
       <!-- Кнопка добавления нового фильма -->
       <div class="col-2">
-        <button class="btn btn-outline-primary" (click)="addMovie()">
+        <button class="btn btn-outline-primary btn-add" (click)="addMovie()">
           Добавить
         </button>
       </div>
@@ -43,31 +43,29 @@
       <li *ngFor="let movie of movies">
         <div class="row mt-3">
 
-          <div class="col-10" container>
-            <div class="row">
-              <div class="col-1">
-                <img width="75" height="100" [src]="movie.posterUrl">
-              </div>
-              <div class="col-10">
-                <div>
-                  <a href="javascript: void(0)" (click)="editMovie(movie)">{{movie.title}}</a>
-                </div>
-                <div>{{movie.year}} {{movie.runtime}}мин</div>
-                <div>{{movie.plot}}</div>
-              </div>
-            </div>
+          <div class="col-2">
+            <img width="112mm" height="150mm" [src]="movie.posterUrl">
           </div>
 
-          <div class="col-1">
-            <button class="btn btn-outline-danger" (click)="deleteMovie(movie.id)">
-              Удалить
-            </button>
+          <div class="col-10 container">
+            <div class="title row">
+              <div class="col-6">
+                <a href="javascript: void(0)" (click)="editMovie(movie)">{{movie.title}}</a>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-outline-danger" (click)="deleteMovie(movie.id)">
+                  Удалить
+                </button>
+                <button class="btn btn-outline-secondary" (click)="editMovie(movie)">
+                  Редактировать
+                </button>
+              </div>
+            </div>
+            <div>{{movie.year}} | {{movie.runtime}}мин</div>
+            <div>{{movie.director}} | {{movie.actors}}</div>
+            <div>{{movie.plot}}</div>
           </div>
-          <div class="col-1">
-            <button class="btn btn-outline-secondary" (click)="editMovie(movie)">
-              Редактировать
-            </button>
-          </div>
+
         </div>
       </li>
     </ul>

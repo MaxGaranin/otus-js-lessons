@@ -91,7 +91,7 @@ export class MoviesListComponent implements OnInit {
     newMovie.runtime = 120;
     newMovie.genres = [];
     newMovie.director = '';
-    newMovie.actors = [];
+    newMovie.actors = '';
     newMovie.plot = '';
     newMovie.posterUrl = '';
 
@@ -113,8 +113,6 @@ export class MoviesListComponent implements OnInit {
 
   editMovie(movie: Movie) {
     let movieToEdit = Object.assign({}, movie);
-
-    console.log(this.actors);
 
     let initialState = {
       movie: movieToEdit,
