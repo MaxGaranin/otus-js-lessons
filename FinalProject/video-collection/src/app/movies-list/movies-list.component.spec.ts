@@ -3,8 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MoviesListComponent } from './movies-list.component';
 import { MoviesService } from "../movies.service";
 import { BsModalRef, BsModalService, ModalModule, PaginationModule } from "ngx-bootstrap";
-import { FormsModule } from '../../../node_modules/@angular/forms';
-import { BrowserModule } from '../../../node_modules/@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('MoviesListComponent', () => {

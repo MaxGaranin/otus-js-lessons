@@ -5,7 +5,7 @@ import { MoviesListComponent } from './movies-list/movies-list.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '../../node_modules/@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ModalModule, PaginationModule, BsDropdownModule } from "ngx-bootstrap";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesService } from './movies.service';
+import { MoviesRestService } from './movies-rest.service';
 import { PageNotFoundComponent } from './not-found.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
@@ -41,6 +42,7 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
   ],
   providers: [
     MoviesService,
+    MoviesRestService,
   ],
   bootstrap: [AppComponent]
 })

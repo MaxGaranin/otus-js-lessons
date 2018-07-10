@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
-import {Subject} from "rxjs/index";
+import {Subject} from "rxjs";
 import {Movie} from "../entities/movie";
 
 @Component({

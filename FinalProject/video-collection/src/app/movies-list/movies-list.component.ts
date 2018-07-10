@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../movies.service";
+import { MoviesRestService } from '../movies-rest.service';
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieCardComponent } from "../movie-card/movie-card.component";
 import { Movie } from "../entities/movie";
-import { ToastrService } from '../../../node_modules/ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
-import { Subject } from '../../../node_modules/rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-movies-list',
