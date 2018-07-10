@@ -129,4 +129,20 @@ export class MoviesService {
     });
     return Promise.resolve(directors);
   }
+
+  getActors() {
+    let result = [] as string[];
+    let movies = moviesDb.movies;
+
+    movies.forEach(movie => {
+      let actorsStr = movie.actors;
+      var actors = actorsStr.split(',');
+
+      actors.forEach(actor => {
+        result.push(actor.trim());
+      });
+    });
+
+    return Promise.resolve(result);
+  }
 }

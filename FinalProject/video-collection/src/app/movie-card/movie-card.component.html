@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header" id="aaa">
   <h4 class="modal-title pull-left">Фильм</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
@@ -19,7 +19,7 @@
     <input class="col" type="text" [(ngModel)]="movie.runtime" />
   </div>
   <div class="row mt-1">
-    <label>Жанры</label>
+    <label class="col">Жанры</label>
     <div class="col">
       <ng-select 
         [items]="genres"
@@ -42,7 +42,15 @@
   </div>
   <div class="row mt-1">
     <label class="col">Актеры</label>
-    <select class="col" multiple></select>
+    <div class="col">
+      <ng-select 
+        [items]="actors"
+        [multiple]="true"
+        [closeOnSelect]="false" 
+        bindLabel="name" 
+        [(ngModel)]="movie.actors">
+      </ng-select>
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Краткое описание</label>

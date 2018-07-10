@@ -24,3 +24,8 @@
   .poster-input {
     width: 100%;
   }
+
+  #aaa .modal-dialog {
+    max-width: 700px;
+    padding: 10px;
+  }

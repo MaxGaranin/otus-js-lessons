@@ -23,6 +23,7 @@ export class MoviesListComponent implements OnInit {
   moviesCount: number;
   genres: string[];
   directors: string[];
+  actors: string[];
   activePage: number = 1;
   sortOrder: string = 'title';
   searchStr: string = '';
@@ -38,6 +39,7 @@ export class MoviesListComponent implements OnInit {
     this.loadMovies();
     this.loadGenres();
     this.loadDirectors();
+    this.loadActors();
   }
 
   loadMovies() {
@@ -59,6 +61,13 @@ export class MoviesListComponent implements OnInit {
     this._moviesService.getDirectors()
       .then(result => {
         this.directors = result;
+      });
+  }
+
+  loadActors() {
+    this._moviesService.getActors()
+      .then(result => {
+        this.actors = result;
       });
   }
 
@@ -88,7 +97,8 @@ export class MoviesListComponent implements OnInit {
     let initialState = {
       movie: newMovie,
       genres: this.genres,
-      directors: this.directors
+      directors: this.directors,
+      actors: this.actors,
     };
 
     this.modalRef = this._modalService.show(MovieCardComponent, { initialState });
@@ -103,10 +113,13 @@ export class MoviesListComponent implements OnInit {
   editMovie(movie: Movie) {
     let movieToEdit = Object.assign({}, movie);
 
+    console.log(this.actors);
+
     let initialState = {
       movie: movieToEdit,
       genres: this.genres,
-      directors: this.directors
+      directors: this.directors,
+      actors: this.actors,
     };
 
     this.modalRef = this._modalService.show(MovieCardComponent, { initialState });

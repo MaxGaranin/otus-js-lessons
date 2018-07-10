@@ -11,6 +11,8 @@ import {Movie} from "../entities/movie";
 export class MovieCardComponent implements OnInit {
   public movie: Movie;
   public genres: string[];
+  public directors: string[];
+  public actors: string[];
   public dialogResult: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef) {
