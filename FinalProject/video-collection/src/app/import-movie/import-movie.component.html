@@ -3,8 +3,10 @@
   <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
 </div>
 <div class="modal-body">
-  <p>Поиск по:</p>
   <div class="container">
+    <div class="row">
+      <h6 class="col">Поиск по:</h6>
+    </div>
     <div class="row">
       <div class="col-3">
         <label>ID</label>
@@ -20,22 +22,19 @@
       </div>
       <div class="col-3 align-self-end">
         <button class="btn btn-outline-primary" (click)="search()">Найти</button>
-        <button class="btn btn-outline-secondary ml-1" (click)="reset()">Сброс</button>        
-      </div>      
+        <button class="btn btn-outline-secondary ml-1" (click)="reset()">Сброс</button>
+      </div>
     </div>
 
-    <div class="row">Запрос:</div>
-    <div class="row">
-      <div><a target="_blank" [href]="searchRequest">{{searchRequest}}</a></div>
-    </div>
-
-    <div class="row">Ответ:</div>
-    <div class="row">
-      <div>{{searchResponse}}</div>
+    <div *ngIf="!isReset" class="row mt-3">
+      <div class="col">
+        <h6>Результат:</h6>
+        <div>{{searchResponse}}</div>
+      </div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" data-dismiss="modal" (click)="import()">Импортировать</button>
-  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="bsModalRef.hide()">Закрыть</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">Закрыть</button>
 </div>

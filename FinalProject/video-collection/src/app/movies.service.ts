@@ -15,6 +15,9 @@ export class MoviesService {
   }
 
   getMovies(page: number, sortBy: string, searchStr: string) {
+//TODO: убрать
+console.log(searchStr);
+
     let movies = this.searchMovies(moviesDb.movies as Movie[], searchStr);
 
     this.sortMovies(movies, sortBy);

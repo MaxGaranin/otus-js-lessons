@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ModalModule, PaginationModule, BsDropdownModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -16,6 +17,7 @@ import { MoviesRestService } from './movies-rest.service';
 import { PageNotFoundComponent } from './not-found.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { ImportMovieComponent } from './import-movie/import-movie.component';
+import { OmdbService } from './omdb.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { ImportMovieComponent } from './import-movie/import-movie.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
@@ -46,6 +49,7 @@ import { ImportMovieComponent } from './import-movie/import-movie.component';
   providers: [
     MoviesService,
     MoviesRestService,
+    OmdbService,
   ],
   bootstrap: [AppComponent]
 })
