@@ -10,6 +10,12 @@ import {Subject} from "rxjs";
 export class ImportMovieComponent implements OnInit {
   public dialogResult: Subject<boolean>;
 
+  searchId: string;
+  searchTitle: string;
+  searchYear: number;
+  searchRequest: string;
+  searchResponse: string;
+
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {

@@ -1,10 +1,41 @@
 <div class="modal-header">
-  <h4 class="modal-title">Modal Header</h4>
+  <h4 class="modal-title">Импорт фильма из базы OMDb</h4>
   <button type="button" class="close" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</button>
 </div>
 <div class="modal-body">
-  <p>This is a large modal.</p>
+  <p>Поиск по:</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <label>ID</label>
+        <input [(ngModel)]="searchId" />
+      </div>
+      <div class="col-3">
+        <label>Название</label>
+        <input [(ngModel)]="searchTitle" />
+      </div>
+      <div class="col-3">
+        <label>Год</label>
+        <input [(ngModel)]="searchYear" />
+      </div>
+      <div class="col-3 align-self-end">
+        <button class="btn btn-outline-primary" (click)="search()">Найти</button>
+        <button class="btn btn-outline-secondary ml-1" (click)="reset()">Сброс</button>        
+      </div>      
+    </div>
+
+    <div class="row">Запрос:</div>
+    <div class="row">
+      <div><a target="_blank" [href]="searchRequest">{{searchRequest}}</a></div>
+    </div>
+
+    <div class="row">Ответ:</div>
+    <div class="row">
+      <div>{{searchResponse}}</div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="import()">Импортировать</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="bsModalRef.hide()">Закрыть</button>
 </div>
