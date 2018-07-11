@@ -15,6 +15,7 @@ import { MoviesService } from './movies.service';
 import { MoviesRestService } from './movies-rest.service';
 import { PageNotFoundComponent } from './not-found.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { ImportMovieComponent } from './import-movie/import-movie.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,11 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     MovieCardComponent,
     PageNotFoundComponent,
     ConfirmationModalComponent,
+    ImportMovieComponent,
   ],
   entryComponents: [
     MovieCardComponent,
+    ImportMovieComponent,
     ConfirmationModalComponent,
   ],
   imports: [

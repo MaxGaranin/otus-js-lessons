@@ -11,7 +11,18 @@ a {
   margin-left: 5px;
 }
 
-.button-add {
-  float: right;
-  margin-left: 5px;
+.poster-image {
+  width: 120px;
+}
+
+h3.anchor-wrapper a {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 75%;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  text-transform: none;
+  margin: 0px;
+  padding: 0px;
+  color: #2C6598;
 }

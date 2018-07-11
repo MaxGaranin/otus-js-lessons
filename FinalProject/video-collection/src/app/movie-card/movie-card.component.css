@@ -1,35 +1,7 @@
-  .poster-img-wrap {
-    width: 230px;
-    height: 300px;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    margin: 0;
-  }
-
-  div>img {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    transform: translate(-50%, -50%);
-  }
-
   textarea {
     height: 150px;
-  }
-  
-  .poster-input {
-    width: 100%;
   }
 
   .card-input {
     width: 100%;
-  }
-
-  #aaa .modal-dialog {
-    max-width: 700px;
-    padding: 10px;
   }

@@ -1,3 +1,4 @@
+import { ImportMovieComponent } from './../import-movie/import-movie.component';
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../movies.service";
 import { MoviesRestService } from '../movies-rest.service';
@@ -102,7 +103,7 @@ export class MoviesListComponent implements OnInit {
       actors: this.actors,
     };
 
-    this.modalRef = this._modalService.show(MovieCardComponent, { initialState });
+    this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
@@ -121,13 +122,17 @@ export class MoviesListComponent implements OnInit {
       actors: this.actors,
     };
 
-    this.modalRef = this._modalService.show(MovieCardComponent, { initialState });
+    this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
         this._moviesService.saveMovie(this.modalRef.content.movie)
           .then(() => this.loadMovies());;
       }
     });
+  }
+
+  importMovie() {
+    this.modalRef = this._modalService.show(ImportMovieComponent, { class: 'modal-lg' });
   }
 
   sortBy(sortOrder: string) {

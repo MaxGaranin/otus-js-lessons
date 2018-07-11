@@ -8,53 +8,53 @@
 <div class="modal-body container">
   <div class="row">
     <label class="col">Название</label>
-    <input class="col" [(ngModel)]="movie.title" />
+    <div class="col">
+      <input class="col" [(ngModel)]="movie.title" />
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Год выпуска</label>
-    <input class="col" type="text" [(ngModel)]="movie.year" />
+    <div class="col">
+      <input class="col" type="text" [(ngModel)]="movie.year" />
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Продолжительность, мин</label>
-    <input class="col" type="text" [(ngModel)]="movie.runtime" />
+    <div class="col">
+      <input class="col" type="text" [(ngModel)]="movie.runtime" />
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Жанры</label>
     <div class="col">
-      <ng-select 
-        [items]="genres"
-        [multiple]="true"
-        [closeOnSelect]="false" 
-        bindLabel="name" 
-        [(ngModel)]="movie.genres">
+      <ng-select [items]="genres" [multiple]="true" [closeOnSelect]="false" bindLabel="name" [(ngModel)]="movie.genres">
       </ng-select>
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Режиссер</label>
     <div class="col">
-        <ng-select
-          [items]="directors" 
-          bindLabel="name"
-          [(ngModel)]="movie.director">
-        </ng-select>
-      </div>
+      <ng-select [items]="directors" bindLabel="name" [(ngModel)]="movie.director">
+      </ng-select>
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Актеры</label>
     <div class="col">
-      <input type="text" class="card-input" [(ngModel)]="movie.actors"/>
+      <input type="text" [(ngModel)]="movie.actors" class="card-input"/>
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Краткое описание</label>
-    <textarea class="col" [(ngModel)]="movie.plot"></textarea>
+    <div class="col">
+      <textarea class="col" [(ngModel)]="movie.plot"></textarea>
+    </div>
   </div>
   <div class="row mt-1">
     <label class="col">Постер</label>
     <div class="col content">
-      <input type="text" [(ngModel)]="movie.posterUrl" class="poster-input"/>
-      <div class="poster-img-wrap mt-1">
+      <input type="text" [(ngModel)]="movie.posterUrl" class="card-input" />
+      <div class="mt-1">
         <img [src]="movie.posterUrl" [alt]="movie.title" />
       </div>
     </div>
