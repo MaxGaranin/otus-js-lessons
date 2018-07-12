@@ -43,8 +43,6 @@ export class MoviesListComponent implements OnInit {
   ngOnInit() {
     this.loadMovies();
     this.loadGenres();
-    this.loadDirectors();
-    this.loadActors();
   }
 
   loadMovies() {
@@ -62,20 +60,6 @@ export class MoviesListComponent implements OnInit {
       });
   }
 
-  loadDirectors() {
-    this._moviesService.getDirectors()
-      .then(result => {
-        this.directors = result;
-      });
-  }
-
-  loadActors() {
-    this._moviesService.getActors()
-      .then(result => {
-        this.actors = result;
-      });
-  }
-
   deleteMovie(movieId: number) {
     this.showConfirmationModal("Внимание", "Удалить фильм?").subscribe(result => {
       if (result === true) {
@@ -89,49 +73,65 @@ export class MoviesListComponent implements OnInit {
   }
 
   addMovie() {
-    let newMovie = new Movie();
-    newMovie.title = '';
-    newMovie.year = 2018;
-    newMovie.runtime = 120;
-    newMovie.genres = [];
-    newMovie.director = '';
-    newMovie.actors = '';
-    newMovie.plot = '';
-    newMovie.posterUrl = '';
+    this.asyncLoadStuff().then(() => {
+      let newMovie = new Movie();
+      newMovie.title = '';
+      newMovie.year = 2018;
+      newMovie.runtime = 120;
+      newMovie.genres = [];
+      newMovie.director = '';
+      newMovie.actors = '';
+      newMovie.plot = '';
+      newMovie.posterUrl = '';
 
-    let initialState = {
-      movie: newMovie,
-      genres: this.genres,
-      directors: this.directors,
-      actors: this.actors,
-    };
+      let initialState = {
+        movie: newMovie,
+        genres: this.genres,
+        directors: this.directors,
+        actors: this.actors,
+      };
 
-    this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
-    this.modalRef.content.dialogResult.subscribe(result => {
-      if (result) {
-        this._moviesService.saveMovie(this.modalRef.content.movie)
-          .then(() => this.loadMovies());
-      }
+      this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
+      this.modalRef.content.dialogResult.subscribe(result => {
+        if (result) {
+          this._moviesService.saveMovie(this.modalRef.content.movie)
+            .then(() => {
+              this._toastrService.success("Фильм добавлен: " + this.modalRef.content.movie.title);
+              this.loadMovies()
+            });
+        }
+      });
     });
   }
 
   editMovie(movie: Movie) {
-    let movieToEdit = Object.assign({}, movie);
+    this.asyncLoadStuff().then(() => {
+      let movieToEdit = Object.assign({}, movie);
 
-    let initialState = {
-      movie: movieToEdit,
-      genres: this.genres,
-      directors: this.directors,
-      actors: this.actors,
-    };
+      let initialState = {
+        movie: movieToEdit,
+        genres: this.genres,
+        directors: this.directors,
+        actors: this.actors,
+      };
 
-    this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
-    this.modalRef.content.dialogResult.subscribe(result => {
-      if (result) {
-        this._moviesService.saveMovie(this.modalRef.content.movie)
-          .then(() => this.loadMovies());
-      }
-    });
+      this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
+      this.modalRef.content.dialogResult.subscribe(result => {
+        if (result) {
+          this._moviesService.saveMovie(this.modalRef.content.movie)
+            .then(() => this.loadMovies());
+        }
+      });
+    })
+  }
+
+  asyncLoadStuff() {
+    return Promise.resolve()
+      .then(() => { return this._moviesService.getDirectors() })
+      .then((result => this.directors = result))
+      .then(() => { return this._moviesService.getActors() })
+      .then(result => this.actors = result)
+      .catch(error => console.log(error));
   }
 
   importMovie() {

@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { ImportMovieComponent } from './import-movie/import-movie.component';
 import { OmdbService } from './omdb.service';
+import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,13 @@ import { OmdbService } from './omdb.service';
     PageNotFoundComponent,
     ConfirmationModalComponent,
     ImportMovieComponent,
+    PromptModalComponent,
   ],
   entryComponents: [
     MovieCardComponent,
     ImportMovieComponent,
     ConfirmationModalComponent,
+    PromptModalComponent,
   ],
   imports: [
     BrowserModule,

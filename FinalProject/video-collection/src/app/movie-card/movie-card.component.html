@@ -1,6 +1,6 @@
-<div class="modal-header" id="aaa">
+<div class="modal-header">
   <h4 class="modal-title pull-left">Фильм</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -9,22 +9,22 @@
   <div class="row">
     <label class="col">Название</label>
     <div class="col">
-      <input class="col" [(ngModel)]="movie.title" #title="ngModel" required/>
+      <input [(ngModel)]="movie.title" #title="ngModel" required/>
       <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
-          Не указано название
-      </div>      
+        Не указано название
+      </div>
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Год выпуска</label>
     <div class="col">
-      <input class="col" type="text" [(ngModel)]="movie.year" />
+      <input type="text" [(ngModel)]="movie.year" />
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Продолжительность, мин</label>
     <div class="col">
-      <input class="col" type="text" [(ngModel)]="movie.runtime" />
+      <input type="text" [(ngModel)]="movie.runtime" />
     </div>
   </div>
   <div class="row mt-1">
@@ -37,26 +37,33 @@
   <div class="row mt-1">
     <label class="col">Режиссер</label>
     <div class="col">
-      <ng-select [items]="directors" bindLabel="name" [(ngModel)]="movie.director">
-      </ng-select>
+      <div class="container">
+        <div class="row">
+          <ng-select class="col-9" bindLabel="name" [items]="directors" [(ngModel)]="movie.director">
+          </ng-select>
+          <button type="button" class="btn btn-outline-dark btn-sm col-3" (click)="addDirector()">
+            Добавить
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Актеры</label>
     <div class="col">
-      <input type="text" [(ngModel)]="movie.actors" class="card-input" />
+      <input type="text" [(ngModel)]="movie.actors" />
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Краткое описание</label>
     <div class="col">
-      <textarea class="col" [(ngModel)]="movie.plot"></textarea>
+      <textarea [(ngModel)]="movie.plot"></textarea>
     </div>
   </div>
   <div class="row mt-1">
     <label class="col">Постер</label>
     <div class="col content">
-      <input type="text" [(ngModel)]="movie.posterUrl" class="card-input" />
+      <input type="text" [(ngModel)]="movie.posterUrl" />
       <div class="mt-1">
         <div *ngIf="movie.posterUrl; then hasPosterUrl else noPosterUrl"></div>
         <ng-template #hasPosterUrl>

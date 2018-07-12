@@ -1,8 +1,10 @@
+import { PromptModalComponent } from './../prompt-modal/prompt-modal.component';
+import { Component, OnInit } from '@angular/core';
+import { BsModalService, BsModalRef } from "ngx-bootstrap";
+import { ToastrService } from 'ngx-toastr';
 import { AppSettings } from './../app-settings';
-import {Component, OnInit} from '@angular/core';
-import {BsModalRef} from "ngx-bootstrap";
-import {Subject} from "rxjs";
-import {Movie} from "../entities/movie";
+import {Observable, Subject} from "rxjs";
+import { Movie } from "../entities/movie";
 
 @Component({
   selector: 'app-movie-card',
@@ -17,9 +19,13 @@ export class MovieCardComponent implements OnInit {
   genres: string[];
   directors: string[];
   actors: string[];
+  promptModalRef: BsModalRef;
   dialogResult: Subject<boolean>;
 
-  constructor(public bsModalRef: BsModalRef) {
+  constructor(
+    public cardModalRef: BsModalRef,
+    private _modalService: BsModalService,
+    private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -28,13 +34,30 @@ export class MovieCardComponent implements OnInit {
     this.dialogResult = new Subject<boolean>();
   }
 
+  addDirector() {
+    let initialState = {
+      title: 'Добавление режиссера',
+      prompt: 'Введите имя режиссера',
+      value: ''
+    };
+
+    this.promptModalRef = this._modalService.show(PromptModalComponent, {initialState});
+    this.promptModalRef.content.dialogResult.subscribe(result => {
+      if (result) {
+        let newDirector = this.promptModalRef.content.myValue;
+        this.directors = [...this.directors, newDirector];
+        this._toastrService.success("Режиссер добавлен: " + newDirector);
+      }
+    });
+  }
+
   ok() {
     this.dialogResult.next(true);
-    this.bsModalRef.hide();
+    this.cardModalRef.hide();
   }
 
   cancel() {
     this.dialogResult.next(false);
-    this.bsModalRef.hide();
+    this.cardModalRef.hide();
   }
 }
