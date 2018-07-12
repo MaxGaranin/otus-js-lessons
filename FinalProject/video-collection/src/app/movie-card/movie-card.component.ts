@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from "ngx-bootstrap";
 import { ToastrService } from 'ngx-toastr';
 import { AppSettings } from './../app-settings';
-import {Observable, Subject} from "rxjs";
+import { Subject } from "rxjs";
 import { Movie } from "../entities/movie";
 
 @Component({
@@ -41,7 +41,7 @@ export class MovieCardComponent implements OnInit {
       value: ''
     };
 
-    this.promptModalRef = this._modalService.show(PromptModalComponent, {initialState});
+    this.promptModalRef = this._modalService.show(PromptModalComponent, { initialState });
     this.promptModalRef.content.dialogResult.subscribe(result => {
       if (result) {
         let newDirector = this.promptModalRef.content.myValue;

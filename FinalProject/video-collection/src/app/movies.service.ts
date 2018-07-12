@@ -17,10 +17,6 @@ export class MoviesService {
   getMovies(page: number, sortBy: string, searchStr: string) {
     let allMovies = moviesDb.movies as Movie[];
 
-    // DEBUG
-    console.log('---MoviesCount: ' + allMovies.length);
-    console.log('---LastId: ' + this.getLastMovieId());
-
     let movies = this.searchMovies(allMovies, searchStr);
     this.sortMovies(movies, sortBy);
 

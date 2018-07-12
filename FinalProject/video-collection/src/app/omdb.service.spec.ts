@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OmdbService } from './omdb.service';
+import { HttpClient } from '../../node_modules/@angular/common/http';
 
 describe('OmdbService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OmdbService]
+      providers: [
+        OmdbService,
+        { provide: HttpClient, useValue: {} },
+      ],
     });
   });
 

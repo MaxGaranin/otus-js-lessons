@@ -12,9 +12,7 @@ export class ConfirmationModalComponent implements OnInit {
   public title: string;
   public onClose: Subject<boolean>;
 
-  public constructor(
-    private _bsModalRef: BsModalRef
-  ) { }
+  public constructor(private _bsModalRef: BsModalRef) {}
 
   public ngOnInit(): void {
     this.onClose = new Subject();
