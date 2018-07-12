@@ -125,14 +125,25 @@ export class MoviesListComponent implements OnInit {
     this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
-        this._moviesService.saveMovie(this.modalRef.content.movie)
-          .then(() => this.loadMovies());;
+        this.loadMovies();
       }
     });
   }
 
   importMovie() {
     this.modalRef = this._modalService.show(ImportMovieComponent, { class: 'modal-lg' });
+    this.modalRef.content.dialogResult.subscribe(result => {
+      if (result) {
+        this._toastrService.success("Фильм успешно импортирован: " + this.modalRef.content.importedMovie.title);
+        this.loadMovies();
+      }
+      else {
+        let lastError = this.modalRef.content.lastError;
+        if (lastError) {
+          this._toastrService.error("Ошибка импорта: " + lastError);
+        }
+      }
+    });
   }
 
   sortBy(sortOrder: string) {

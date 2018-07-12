@@ -15,11 +15,13 @@ export class MoviesService {
   }
 
   getMovies(page: number, sortBy: string, searchStr: string) {
-//TODO: убрать
-console.log(searchStr);
+    let allMovies = moviesDb.movies as Movie[];
 
-    let movies = this.searchMovies(moviesDb.movies as Movie[], searchStr);
+    // DEBUG
+    console.log('---MoviesCount: ' + allMovies.length);
+    console.log('---LastId: ' + this.getLastMovieId());
 
+    let movies = this.searchMovies(allMovies, searchStr);
     this.sortMovies(movies, sortBy);
 
     let pagedMovies = this.getPage(movies, page, this.pageSize);
@@ -103,21 +105,24 @@ console.log(searchStr);
   }
 
   addMovie(movie: Movie) {
+    movie.id = this.getLastMovieId() + 1;
+
+    let movies = moviesDb.movies;
+    movies.push(movie);
+
+    return Promise.resolve(null);
+  }
+
+  getLastMovieId() {
     let movies = moviesDb.movies;
 
     let maxId = 0;
-
     for (let i = 0; i < movies.length; i++) {
       if (movies[i].id > maxId) {
         maxId = movies[i].id;
       }
     }
-
-    movie.id = maxId + 1;
-
-    movies.push(movie);
-
-    return Promise.resolve(null);
+    return maxId;
   }
 
   getGenres() {

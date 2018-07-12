@@ -25,16 +25,20 @@
         <button class="btn btn-outline-secondary ml-1" (click)="reset()">Сброс</button>
       </div>
     </div>
-
+    
     <div *ngIf="!isReset" class="row mt-3">
       <div class="col">
         <h6>Результат:</h6>
-        <div>{{searchResponse}}</div>
+        <pre class="json-result">{{searchResponse}}</pre>
       </div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="import()">Импортировать</button>
-  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">Закрыть</button>
+  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="import()" [disabled]="!isFound">
+    Импортировать
+  </button>
+  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="close()">
+    Закрыть
+  </button>
 </div>

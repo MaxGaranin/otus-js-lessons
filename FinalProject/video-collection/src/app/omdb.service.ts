@@ -9,7 +9,9 @@ export class OmdbService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  public get(url: string, data: object): Observable<any> {
-    return this._httpClient.get(url, { params: data as HttpParams });
+  url = 'http://www.omdbapi.com';
+  
+  public get(data: any): Observable<any> {
+    return this._httpClient.get(this.url, { params: data as HttpParams });
   }
 }

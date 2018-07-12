@@ -19,6 +19,9 @@ export class ImportMovieComponent implements OnInit {
   searchRequest: string;
   searchResponse: string;
   isReset: boolean;
+  isFound: boolean;
+  lastError: string;
+  importedMovie: Movie;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -34,7 +37,12 @@ export class ImportMovieComponent implements OnInit {
     this.searchId = '';
     this.searchTitle = '';
     this.searchYear = '';
+    this.searchRequest = '';
+    this.searchResponse = '';
     this.isReset = true;
+    this.isFound = false;
+    this.lastError = '';
+    this.importedMovie = null;
   }
 
   search() {
@@ -45,7 +53,9 @@ export class ImportMovieComponent implements OnInit {
     this.isReset = false;
 
     let params: any = {};
-    params.apikey = "92d7c243"; //TODO: убрать после показа
+
+    //TODO: убрать после показа
+    params.apikey = "92d7c243"; 
 
     if (this.searchId) {
       params.i = this.searchId;
@@ -57,32 +67,44 @@ export class ImportMovieComponent implements OnInit {
       }
     }
 
-    const url = 'http://www.omdbapi.com';
-    this._omdbService.get(url, params).subscribe(
+    this._omdbService.get(params).subscribe(
       value => {
         this.searchResponse = JSON.stringify(value);
+        this.isFound = true;
       },
       error => {
         this.searchResponse = error;
+        this.isFound = false;
       });
   }
 
   import() {
-    let importedMovie = JSON.parse(this.searchResponse);
+    let data = JSON.parse(this.searchResponse);
     let movie: Movie = new Movie();
-    Object.assign(movie, importedMovie);
-    console.log(movie);
+    movie.id = this._moviesService.getLastMovieId() + 1;
+    movie.title = data.Title;
+    movie.year = data.Year;
+    movie.runtime = data.Runtime.substring(0, data.Runtime.length - 1 - 3);
+    movie.genres = data.Genre.split(', ');
+    movie.director = data.Director;
+    movie.actors = data.Actors;
+    movie.plot = data.Plot;
+    movie.posterUrl = data.Poster !== 'N/A' ? data.Poster : '';
 
-    this._moviesService.addMovie(movie).then(() => {
+    this._moviesService.addMovie(movie)
+      .then(() => {
+        this.importedMovie = movie;
 
-      this._moviesService.getMovies(1, 'title', (movie as any).title)
-        .then(result => {
-          console.log(result);
-        });
+        this.dialogResult.next(true);
+        this.bsModalRef.hide();
+      })
+      .catch(error => {
+        console.log(error);
+        this.lastError = error;
 
-      this.dialogResult.next(true);
-      this.bsModalRef.hide();
-    });
+        this.dialogResult.next(false);
+        this.bsModalRef.hide();
+      });
   }
 
   close() {
