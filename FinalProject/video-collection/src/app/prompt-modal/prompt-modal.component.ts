@@ -11,7 +11,7 @@ export class PromptModalComponent implements OnInit {
 
   title: string;
   prompt: string;
-  myValue: string;
+  result: string;
   dialogResult: Subject<boolean>;
 
   constructor(public promptModalRef: BsModalRef) { }

@@ -38,7 +38,7 @@ export class MovieCardComponent implements OnInit {
     let initialState = {
       title: 'Добавление режиссера',
       prompt: 'Введите имя режиссера',
-      value: ''
+      result: ''
     };
 
     this.promptModalRef = this._modalService.show(PromptModalComponent, { initialState });
