@@ -8,6 +8,7 @@ import { Movie } from "../entities/movie";
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { Subject } from 'rxjs';
+import { AppSettings } from '../app-settings';
 
 @Component({
   selector: 'app-movies-list',
@@ -20,6 +21,8 @@ export class MoviesListComponent implements OnInit {
     private _moviesService: MoviesService,
     private _modalService: BsModalService,
     private _toastrService: ToastrService) { }
+
+  noMoviePath = AppSettings.NO_IMAGE_SRC_PATH;
 
   movies: Movie[];
   moviesCount: number;
@@ -125,7 +128,8 @@ export class MoviesListComponent implements OnInit {
     this.modalRef = this._modalService.show(MovieCardComponent, { initialState, class: 'modal-lg' });
     this.modalRef.content.dialogResult.subscribe(result => {
       if (result) {
-        this.loadMovies();
+        this._moviesService.saveMovie(this.modalRef.content.movie)
+          .then(() => this.loadMovies());
       }
     });
   }

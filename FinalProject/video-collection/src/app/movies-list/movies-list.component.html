@@ -36,7 +36,7 @@
         </button>
         <button class="btn btn-outline-primary ml-1" (click)="importMovie()">
           Импорт
-        </button>        
+        </button>
       </div>
 
     </div>
@@ -47,7 +47,13 @@
       <li *ngFor="let movie of movies">
         <div class="row mt-3">
           <div class="col-2">
-            <img class="poster-image" [src]="movie.posterUrl">
+            <div *ngIf="movie.posterUrl; then hasPosterUrl else noPosterUrl"></div>
+            <ng-template #hasPosterUrl>
+              <img class="poster-image" [src]="movie.posterUrl">
+            </ng-template>
+            <ng-template #noPosterUrl>
+              <img class="poster-image" [src]="noMoviePath">
+            </ng-template>
           </div>
           <div class="col-10 container">
             <div class="title row">

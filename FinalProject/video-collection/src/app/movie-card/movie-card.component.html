@@ -41,7 +41,7 @@
   <div class="row mt-1">
     <label class="col">Актеры</label>
     <div class="col">
-      <input type="text" [(ngModel)]="movie.actors" class="card-input"/>
+      <input type="text" [(ngModel)]="movie.actors" class="card-input" />
     </div>
   </div>
   <div class="row mt-1">
@@ -55,7 +55,13 @@
     <div class="col content">
       <input type="text" [(ngModel)]="movie.posterUrl" class="card-input" />
       <div class="mt-1">
-        <img [src]="movie.posterUrl" [alt]="movie.title" />
+        <div *ngIf="movie.posterUrl; then hasPosterUrl else noPosterUrl"></div>
+        <ng-template #hasPosterUrl>
+          <img class="poster-image" [src]="movie.posterUrl">
+        </ng-template>
+        <ng-template #noPosterUrl>
+          <img class="poster-image" [src]="noMoviePath">
+        </ng-template>
       </div>
     </div>
   </div>

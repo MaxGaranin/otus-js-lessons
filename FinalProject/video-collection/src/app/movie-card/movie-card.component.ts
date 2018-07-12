@@ -1,3 +1,4 @@
+import { AppSettings } from './../app-settings';
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
 import {Subject} from "rxjs";
@@ -9,11 +10,14 @@ import {Movie} from "../entities/movie";
   styleUrls: ['./movie-card.component.css'],
 })
 export class MovieCardComponent implements OnInit {
-  public movie: Movie;
-  public genres: string[];
-  public directors: string[];
-  public actors: string[];
-  public dialogResult: Subject<boolean>;
+
+  noMoviePath = AppSettings.NO_IMAGE_SRC_PATH;
+
+  movie: Movie;
+  genres: string[];
+  directors: string[];
+  actors: string[];
+  dialogResult: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef) {
   }
