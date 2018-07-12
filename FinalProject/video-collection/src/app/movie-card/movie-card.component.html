@@ -9,7 +9,10 @@
   <div class="row">
     <label class="col">Название</label>
     <div class="col">
-      <input class="col" [(ngModel)]="movie.title" />
+      <input class="col" [(ngModel)]="movie.title" #title="ngModel" required/>
+      <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
+          Не указано название
+      </div>      
     </div>
   </div>
   <div class="row mt-1">
@@ -68,6 +71,10 @@
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-outline-primary" (click)="Ok()">ОК</button>
-  <button class="btn btn-outline-secondary" (click)="Cancel()">Отмена</button>
+  <button class="btn btn-outline-primary" [disabled]="title.invalid" (click)="ok()">
+    ОК
+  </button>
+  <button class="btn btn-outline-secondary" (click)="cancel()">
+    Отмена
+  </button>
 </div>

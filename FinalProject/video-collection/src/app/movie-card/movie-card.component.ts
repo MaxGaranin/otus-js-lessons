@@ -28,12 +28,12 @@ export class MovieCardComponent implements OnInit {
     this.dialogResult = new Subject<boolean>();
   }
 
-  Ok() {
+  ok() {
     this.dialogResult.next(true);
     this.bsModalRef.hide();
   }
 
-  Cancel() {
+  cancel() {
     this.dialogResult.next(false);
     this.bsModalRef.hide();
   }
