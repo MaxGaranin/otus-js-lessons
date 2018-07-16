@@ -1,4 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatGridListModule,
+  MatDialogModule,
+} from '@angular/material';
 
 import { GoComponent } from './go.component';
 
@@ -8,7 +16,19 @@ describe('GoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoComponent ]
+      declarations: [
+        GoComponent
+      ],
+      providers: [
+      ],
+      imports: [
+        FormsModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatGridListModule,
+        MatDialogModule,
+      ],
     })
     .compileComponents();
   }));

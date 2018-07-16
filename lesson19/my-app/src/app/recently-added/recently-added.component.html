@@ -1,0 +1,14 @@
+<div>
+  <div>
+    <ul>
+      <li *ngFor="let entry of wordsMap | keys">
+        {{entry.key}}&nbsp;-&nbsp;{{entry.value}}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <button mat-raised-button (click)="addNewWord()">
+      Add New
+    </button>
+  </div>
+</div>

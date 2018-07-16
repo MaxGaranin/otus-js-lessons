@@ -1,0 +1,15 @@
+.col {
+  float: left;
+  margin: 5px;
+}
+
+.row {
+  clear: both;
+  margin: 5px;
+  vertical-align: middle;
+}
+
+.first-col {
+  width: 150px;
+}
+

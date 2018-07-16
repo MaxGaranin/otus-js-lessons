@@ -1,13 +1,7 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
-  <p>Имя: {{name}}</p>
-  <p>Возраст: {{age}}</p>
-
-  <div>
-    <p>Количество кликов: {{count}}</p>
-    <button mat-button (click)="increase($event)">Click me!</button>
-  </div>
-</div>
+<h1 class="title">Learn English</h1>
+<nav>
+  <a routerLink="/recently" routerLinkActive="active" mat-button>Recently Added</a>
+  <a routerLink="/go" routerLinkActive="active" mat-button>Go</a>
+  <a routerLink="/settings" routerLinkActive="active" mat-button>Settings</a>
+</nav>
+<router-outlet></router-outlet>
