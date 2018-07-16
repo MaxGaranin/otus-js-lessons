@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Разбор примеров по мотивам статьи https://bitsofco.de/form-validation-techniques/ -->
+    <meta charset="utf-8">
+    <title>Forms Validation</title>
+
+    <link rel="stylesheet" type="text/css" href="temp.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <script src="temp.js"></script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>
+                Number Input 1
+                <input type="number" id="input1" min="10" max="100" step="10">
+            </label>
+        </div>
+        <div>
+            <label>
+                Number Input 2
+                <input type="number" min="10" max="100" step="10">
+            </label>
+        </div>
+        <div>
+            <label>
+                Number Input 3
+                <input type="number" min="10" max="100" step="10">
+            </label>
+        </div>
+        <input class="btn btn-outline" type="submit" id="submit">
+    </form>
+</body>
+
+<script>
+    console.log("----------- body");
+</script>
+
+</html>
