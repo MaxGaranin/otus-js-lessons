@@ -5,6 +5,7 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatGridListModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';

@@ -11,11 +11,8 @@ import {
 } from '@angular/material';
 
 import { AddNewComponent } from './add-new.component';
-<<<<<<< HEAD
-import {TranslatorService} from "../translator.service";
-=======
-import { TranslatorService } from '../translator.service';
->>>>>>> 23b0d49... Убрал в тестах схему NO_ERRORS_SCHEMA, пришлось несколько помучиться с тестами AppComponent
+
+// Убрал в тестах схему NO_ERRORS_SCHEMA, пришлось несколько помучиться с тестами AppComponent
 
 describe('AddNewComponent', () => {
   let component: AddNewComponent;
@@ -37,7 +34,7 @@ describe('AddNewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddNewComponent ]
+      declarations: [ AddNewComponent ],
       providers: [
         { provide: MatDialog, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

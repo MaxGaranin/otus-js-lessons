@@ -12,15 +12,17 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material';
 
-import {AppComponent} from './app.component';
-import {RecentlyAddedComponent} from './recently-added/recently-added.component';
-import {SettingsComponent} from './settings/settings.component';
-import {GoComponent} from './go/go.component';
-import {AddNewComponent} from './add-new/add-new.component';
-import {TranslatorService} from "./translator.service";
-import {PageNotFoundComponent} from "./not-found.component";
-import {AppRoutingModule} from "./app-routing.module";
+import { AppComponent } from './app.component';
+import { RecentlyAddedComponent } from './recently-added/recently-added.component';
+import { SettingsComponent } from './settings/settings.component';
+import { GoComponent } from './go/go.component';
+import { AddNewComponent } from './add-new/add-new.component';
+import { TranslatorService } from "./translator.service";
+import { PageNotFoundComponent } from "./not-found.component";
+import { AppRoutingModule } from "./app-routing.module";
 import { PipeModule } from './pipe.module';
+import { WordService } from './word.service';
+import { DataStoreService } from './data-store.service';
 
 @NgModule({
   declarations: [
