@@ -24,10 +24,13 @@ function subMain(value) {
 }
 
 function work(value) {
-    return new Promise((res, rej) => {
-        setTimeout(function () {
-            console.log('in function work');
-            res(49 - value);
-        }, 300);
-    });
+    console.log('in function work');
+    return 49 - value;
+
+    // return new Promise((res, rej) => {
+    //     setTimeout(function () {
+    //         console.log('in function work');
+    //         res(49 - value);
+    //     }, 300);
+    // });
 }

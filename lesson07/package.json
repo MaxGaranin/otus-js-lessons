@@ -1,0 +1,16 @@
+{
+  "name": "lesson07",
+  "version": "1.0.0",
+  "description": "",
+  "main": "series-console.js",
+  "scripts": {
+    "start": "node async-series-console.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^22.4.3"
+  }
+}
