@@ -1666,6 +1666,20 @@
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTYzNDc2MDc0N15BMl5BanBnXkFtZTgwOTcwMDQ5MTE@._V1_SX300.jpg"
     },
     {
+      "id": 114,
+      "title": "12 Angry Men",
+      "year": "1957",
+      "runtime": "96",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "director": "Sidney Lumet",
+      "actors": "Martin Balsam, John Fiedler, Lee J. Cobb, E.G. Marshall",
+      "plot": "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
+      "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODQwOTc5MDM2N15BMl5BanBnXkFtZTcwODQxNTEzNA@@._V1_SX300.jpg"
+    },
+    {
       "id": 115,
       "title": "The Imitation Game",
       "year": "2014",
@@ -2115,7 +2129,7 @@
         "Drama",
         "Mystery"
       ],
-      "director": null,
+      "director": "Asghar Farhadi",
       "actors": "Peyman Moaadi, Leila Hatami, Sareh Bayat, Shahab Hosseini",
       "plot": "A married couple are faced with a difficult decision - to improve the life of their child by moving to another country or to stay in Iran and look after a deteriorating parent who has Alzheimer's disease.",
       "posterUrl": "http://ia.media-imdb.com/images/M/MV5BMTYzMzU4NDUwOF5BMl5BanBnXkFtZTcwMTM5MjA5Ng@@._V1_SX300.jpg"
@@ -2134,17 +2148,6 @@
       "actors": "Ryan Gosling, Rudy Eisenzopf, Casey Groves, Charlie Talbert",
       "plot": "Four denizens in the world of high-finance predict the credit and housing bubble collapse of the mid-2000s, and decide to take on the big banks for their greed and lack of foresight.",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BNDc4MThhN2EtZjMzNC00ZDJmLThiZTgtNThlY2UxZWMzNjdkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
-    },
-    {
-      "title": "фффф",
-      "year": 2018,
-      "runtime": 120,
-      "genres": [],
-      "director": "",
-      "actors": "",
-      "plot": "",
-      "posterUrl": "",
-      "id": 147
     }
   ]
 }

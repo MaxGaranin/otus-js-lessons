@@ -9,10 +9,10 @@ export class MoviesRestService {
 
   constructor(private _toastrService: ToastrService) { }
 
-  getMovies(page: number, sortBy: string, searchStr: string): Promise<any> {
+  getMovies(page: number, sortBy: string, searchStr: string) {
     if (!searchStr) searchStr = '';
 
-    return fetch(`/api/movies?_page=${page}&_sort=${sortBy}&q=${searchStr}`)
+    return fetch(`/movies?_page=${page}&_sort=${sortBy}&q=${searchStr}`)
       .then((response) => {
         this.checkStatus(response);
 
@@ -30,7 +30,7 @@ export class MoviesRestService {
   }
 
   deleteMovie(id: number) {
-    return fetch(`/api/movies/${id}`, { method: 'DELETE' })
+    return fetch(`/movies/${id}`, { method: 'DELETE' })
       .then((response) => {
         this.checkStatus(response);
       })
@@ -46,7 +46,7 @@ export class MoviesRestService {
   }
 
   updateMovie(movie: Movie) {
-    let request = new Request(`/api/movies/${movie.id}`, {
+    let request = new Request(`/movies/${movie.id}`, {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
@@ -64,7 +64,7 @@ export class MoviesRestService {
   }
 
   addMovie(movie: Movie) {
-    let request = new Request(`/api/movies`, {
+    let request = new Request(`/movies`, {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
@@ -81,12 +81,8 @@ export class MoviesRestService {
       });
   }
 
-  getLastMovieId() {
-    return 1001;
-  }
-
   getGenres() {
-    return fetch(`/api/genres`)
+    return fetch(`/genres`)
       .then((response) => {
         this.checkStatus(response);
 
@@ -95,14 +91,6 @@ export class MoviesRestService {
       .catch((err) => {
         this._toastrService.error(err);
       });
-  }
-
-  getDirectors() {
-    return Promise.resolve([]);
-  }
-
-  getActors() {
-    return Promise.resolve([]);
   }
 
   checkStatus(response) {

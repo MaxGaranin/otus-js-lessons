@@ -3,7 +3,6 @@ import { BsModalRef } from "ngx-bootstrap";
 import { Subject } from "rxjs";
 import { OmdbService } from '../omdb.service';
 import { MoviesService } from '../movies.service';
-import { MoviesRestService } from '../movies-rest.service';
 import { Movie } from '../entities/movie';
 
 @Component({
@@ -27,7 +26,7 @@ export class ImportMovieComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private _omdbService: OmdbService,
-    private _moviesService: MoviesRestService) { }
+    private _moviesService: MoviesService) { }
 
   ngOnInit() {
     this.dialogResult = new Subject<boolean>();

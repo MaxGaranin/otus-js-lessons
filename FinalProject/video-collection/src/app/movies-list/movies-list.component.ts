@@ -18,7 +18,7 @@ import { AppSettings } from '../app-settings';
 export class MoviesListComponent implements OnInit {
 
   constructor(
-    private _moviesService: MoviesRestService,
+    private _moviesService: MoviesService,
     private _modalService: BsModalService,
     private _toastrService: ToastrService) { }
 
