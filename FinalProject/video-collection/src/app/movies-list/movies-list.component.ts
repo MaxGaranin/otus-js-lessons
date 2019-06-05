@@ -2,6 +2,7 @@ import { ImportMovieComponent } from './../import-movie/import-movie.component';
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../movies.service";
 import { MoviesRestService } from '../movies-rest.service';
+import { MoviesCoreService } from '../movies-core.service';
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieCardComponent } from "../movie-card/movie-card.component";
 import { Movie } from "../entities/movie";

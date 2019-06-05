@@ -14,6 +14,7 @@ import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MoviesService } from './movies.service';
 import { MoviesRestService } from './movies-rest.service';
+import { MoviesCoreService } from './movies-core.service';
 import { PageNotFoundComponent } from './not-found.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { ImportMovieComponent } from './import-movie/import-movie.component';
@@ -52,6 +53,7 @@ import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
   providers: [
     MoviesService,
     MoviesRestService,
+    MoviesCoreService,
     OmdbService,
   ],
   bootstrap: [AppComponent]
